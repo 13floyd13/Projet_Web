@@ -1,4 +1,5 @@
 <?php
+/*test*/
 require_once("util.php");
 
 //urls flux
