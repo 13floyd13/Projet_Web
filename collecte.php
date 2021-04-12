@@ -1,5 +1,6 @@
 <?php
 require_once("util.php");
+require_once("collecteBD.php");
 
 //urls flux
 $urls = array(
@@ -33,26 +34,22 @@ echo "<h1>".$titre_flux."</h1>";
 $nouvelles = $xml->xpath("//item");
 
 //on affiche les nouvelles
-$i = 0;
 foreach ($nouvelles as $nouvelle) {
-    $i++;
+
+    $id = getNombreNouvelles($bd);
     $url_image = getURLImage($nouvelle);
+    $img = "";
     if ($url_image != "") {
-        $img = 'images/image' . $i .'.'.extensionImage($url_image);
+        $img = 'images/image' . $id .'.'.extensionImage($url_image);
         file_put_contents($img, file_get_contents($url_image));
     }
     ?>
-    <a href="<?php echo $nouvelle->link; ?>"><?php echo $i . " : " . $nouvelle->title; ?></a>
+    <a href="<?php echo $nouvelle->link; ?>"><?php echo $nouvelle->title; ?></a>
     <p><?php echo date('d/m/Y H:i:s', strtotime($nouvelle->pubDate)); ?></p>
     <p><?php echo $nouvelle->description; ?></p></li>
     <img src="<?=$img?>">
 
     <?php
-
-
-    //chargement des images, un peu long pour certains flux, à décommenter pour essayer
-    //les fonctions getURLImage et extensionImage sont dans util.php
-	
-
+    addNouvelle($bd, $titre_flux, $nouvelle);
 }
 ?>
