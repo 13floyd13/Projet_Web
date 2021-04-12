@@ -36,10 +36,16 @@ $nouvelles = $xml->xpath("//item");
 $i = 0;
 foreach ($nouvelles as $nouvelle) {
     $i++;
+    $url_image = getURLImage($nouvelle);
+    if ($url_image != "") {
+        $img = 'images/image' . $i .'.'.extensionImage($url_image);
+        file_put_contents($img, file_get_contents($url_image));
+    }
     ?>
     <a href="<?php echo $nouvelle->link; ?>"><?php echo $i . " : " . $nouvelle->title; ?></a>
     <p><?php echo date('d/m/Y H:i:s', strtotime($nouvelle->pubDate)); ?></p>
     <p><?php echo $nouvelle->description; ?></p></li>
+    <img src="<?=$img?>">
 
     <?php
 
@@ -47,10 +53,6 @@ foreach ($nouvelles as $nouvelle) {
     //chargement des images, un peu long pour certains flux, à décommenter pour essayer
     //les fonctions getURLImage et extensionImage sont dans util.php
 	
-    /*$url_image = getURLImage($nouvelle);
-    if ($url_image != "") {
-        $img = 'images/image' . $i .'.'.extensionImage($url_image);
-        file_put_contents($img, file_get_contents($url_image));
-    }*/
+
 }
 ?>
