@@ -56,11 +56,11 @@ class UtilisateurDAO
 
     function addUtilisateur(Utilisateur $utilisateur)
     {
-        if ($this->isExistUtilisateur($utilisateur->login)) {
+        if ($this->isExistUtilisateur($utilisateur->getLogin())) {
             return;
         }
-        $login = $this->db->quote($utilisateur->login);
-        $mp = $this->db->quote($utilisateur->mp);
+        $login = $this->db->quote($utilisateur->getLogin());
+        $mp = $this->db->quote($utilisateur->getMp());
         $commandeRequete = 'INSERT INTO utilisateurs(login,mp) VALUES(\'' . $login . '\', ' . $mp . ')';
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
@@ -69,7 +69,7 @@ class UtilisateurDAO
         $requete->closeCursor();
     }
     function removeUtilisateur(Utilisateur $utilisateur){
-        if ($this->isExistUtilisateur($utilisateur->login)){
+        if ($this->isExistUtilisateur($utilisateur->getLogin())){
             $loginAdelete= $utilisateur->getLogin();
             $commandeRequete1="DELETE FROM flux_utilisateurs WHERE login=$loginAdelete";
             $requete1=$this->db->prepare($commandeRequete1);

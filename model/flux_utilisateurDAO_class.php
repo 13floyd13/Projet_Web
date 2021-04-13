@@ -1,9 +1,10 @@
 <?php
-require_once(dirname(__FILE__).'/flux_utilisateur_class.php');
+include(dirname(__FILE__).'/flux_utilisateur_class.php');
 
 
 class Flux_utilisateurDAO
 {
+
     private PDO $db;
 
     function __construct()
@@ -65,13 +66,13 @@ class Flux_utilisateurDAO
         return count($resultat) > 0;
     }
     function addFlux_utilisateur(Flux_utilisateur $flux_utilisateur){
-        if($this->isExistFlux_utilisateur()){
+        if($this->isExistFlux_utilisateur($flux_utilisateur->getLogin(),$flux_utilisateur->getFlux())){
             return;
         }
-        $login = $this->db->quote($flux_utilisateur->login);
-        $nom = $this->db->quote($flux_utilisateur->nom);
-        $categorie = $this->db->quote($flux_utilisateur->categorie);
-        $commandeRequete = 'INSERT INTO nouvelles(flux, login, nom, categorie) VALUES(\'' . $flux_utilisateur->flux . '\', ' . $login . ', ' . $nom . ', ' . $categorie . ')';
+        $login = $this->db->quote($flux_utilisateur->getLogin());
+        $nom = $this->db->quote($flux_utilisateur->getNom());
+        $categorie = $this->db->quote($flux_utilisateur->getCategorie());
+        $commandeRequete = 'INSERT INTO nouvelles(flux, login, nom, categorie) VALUES(\'' . $flux_utilisateur->getFlux() . '\', ' . $login . ', ' . $nom . ', ' . $categorie . ')';
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
