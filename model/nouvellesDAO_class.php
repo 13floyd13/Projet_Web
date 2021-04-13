@@ -36,7 +36,7 @@ class NouvellesDAO
         if ($requete) {
             $requete->execute();
         }
-        $resultat= $requete->fetch()['url'];
+        $resultat= $requete->fetch()['id'];
         return $resultat;
     }
     function isExistNouvelle($titre,$description): bool{
