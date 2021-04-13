@@ -8,7 +8,7 @@
   <body>
 
     <header>
-      <a class="return" href="main.php">&#8592;</a></p>
+      <a class="return" href="../view/main.view.php">&#8592;</a></p>
     </header>
 
     <div id="container">
