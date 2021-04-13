@@ -3,6 +3,13 @@ $opt_titreToCheck = isset($_SESSION['opt_titre']) ? "checked" : "";
 $opt_imageToCheck = isset($_SESSION['opt_image']) ? "checked" : "";
 $opt_descriptionToCheck = isset($_SESSION['opt_description']) ? "checked" : "";
 $opt_lienToCheck = isset($_SESSION['opt_lien']) ? "checked" : "";
+
+function toCheck($identifiant) : string {
+    if (isset($_SESSION[$identifiant])) {
+        return $_SESSION[$identifiant] == "checked" ? "checked" : "";
+    }
+    return "";
+}
 ?>
 <form action="" method="POST">
     <label for="opt_titre">Titre</label>
@@ -14,3 +21,4 @@ $opt_lienToCheck = isset($_SESSION['opt_lien']) ? "checked" : "";
     <label for="opt_lien">Lien de l'article</label>
     <input type="checkbox" id="opt_lien" name="opt_lien" <?= $opt_lienToCheck ?>>
 </form>
+<script type="application/javascript" src="infos_a_afficher.js"></script>
