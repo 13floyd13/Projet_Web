@@ -1,7 +1,7 @@
 <?php
-require_once(dirname(__FILE__).'/Projet_Web.php');
+require_once(dirname(__FILE__).'/flux_class.php');
 
-class fluxDAO
+class FluxDAO
 {
     //attributs
     private PDO $db;
@@ -9,7 +9,7 @@ class fluxDAO
     //constructeur
     function __construct()
     {
-        $database = 'sqlite:newsDB'; // Data source name
+        $database = 'sqlite:'.dirname(__FILE__).'/../data/newsDB'; // Data source name
         try {
             $db = new PDO($database);
         } catch (PDOException $e) {
@@ -22,21 +22,43 @@ class fluxDAO
     {
         $commandeRequete = "SELECT * FROM flux WHERE url=$url";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->execute();
+        if ($requete) {
+            $requete->execute();
+        }
         $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Flux");
         return $resultat[0];
 
     }
-//$flux= $this->db->query($commandeRequete);
-//        $result=$flux->fetchall(PDO::FETCH_CLASS;"Flux");
-//        return $result[0];
 
     function getNombreFlux(): int
     {
         $commandeRequete = "SELECT COUNT(DISTINCT url) FROM flux";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->execute();
+        if ($requete) {
+            $requete->execute();
+        }
         $resultat = $requete->fetch()['url'];
         return $resultat;
+    }
+    function isExistFlux($url): bool {
+        $commandeRequete="SELECT url FROM flux WHERE url=$url";
+        $requete=$this->db->prepare($commandeRequete);
+        if($requete){
+            $requete->execute();
+        }
+        $resultat=$requete->fetchAll();
+        $requete->closeCursor();
+        return count($resultat) > 0;
+    }
+    function addFlux($flux){
+        if($this->isExistFlux($flux->url)){
+            return;
+        }
+        $commandeRequete="INSERT INTO flux(url) VALUES($flux->url)";
+        $requete= $this->db->prepare($commandeRequete);
+        if($requete){
+            $requete->execute();
+        }
+        $requete->closeCursor();
     }
 }
