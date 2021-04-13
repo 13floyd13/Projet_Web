@@ -11,4 +11,4 @@
         <input type="checkbox" id="opt_lien" name="opt_lien" <?= $opt_lienToCheck ?>>
     </fieldset>
 </form>
-<script type="application/javascript" src="infos_a_afficher.js"></script>
+<script type="application/javascript" src="../controler/infos_a_afficher.ctrl.js"></script>
