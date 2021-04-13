@@ -1,2 +1,2 @@
 <?php
-header("./controleur/login.php");
+header("./controleur/login.ctrl.php");
