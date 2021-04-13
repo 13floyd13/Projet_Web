@@ -1,16 +1,3 @@
-<?php
-$opt_titreToCheck = toCheck("opt_titreToCheck");
-$opt_imageToCheck = toCheck("opt_imageToCheck");
-$opt_descriptionToCheck = toCheck("opt_descriptionToCheck");
-$opt_lienToCheck = toCheck("opt_lienToCheck");
-
-function toCheck($identifiant) : string {
-    if (isset($_SESSION[$identifiant])) {
-        return $_SESSION[$identifiant] == "checked" ? "checked" : "";
-    }
-    return "";
-}
-?>
 <form action="" method="POST">
     <fieldset>
         <legend>Options d'affichage</legend>
