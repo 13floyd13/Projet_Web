@@ -1,8 +1,7 @@
 <?php
 
   $imgs = array();
-  $imgs[] = '<img src="images/image01.jpg" alt="image 1">';
-  $imgs[] = '<img src="images/image02.jpeg" alt="image 2">';
+  array_push($imgs,'<img src="images/image01.jpg" alt="image 1">', '<img src="images/image02.jpeg" alt="image 2">');
 
   function affiche_images() : string{
     global $imgs;
