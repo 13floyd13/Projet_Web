@@ -1,12 +1,15 @@
 <?php
+require("../model/fluxDAO_class.php");
+require("../model/flux_utilisateurDAO_class.php");
 require_once("../view/ajouter_flux.view.php");
 
+$login = $_SESSION['login'];
 $i_url = $_POST['i_url'];
 $i_nom_flux = $_POST['i_nom_flux'];
 $flux_db = new FluxDAO();
 $fluxUtilisateur_db = new Flux_utilisateurDAO();
 $fluxUtilisateur_url = $fluxUtilisateur_db->getURL($i_nom_flux);
-$fluxUtilisateur_nom = $fluxUtilisateur_db->getNom($i_url);
+$fluxUtilisateur_nom = $fluxUtilisateur_db->getNomFlux_utilisateur($i_url, $login);
 $flux = $flux_db->get($i_url);
 
 if (!isset($i_url)) {
