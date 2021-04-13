@@ -3,23 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Login page</title>
-    <link rel="stylesheet" href="design/login.css">
+    <link rel="stylesheet" href="../view/design/login.css">
   </head>
   <body>
 
-    <h1>Login</h1>
-
     <div id="container">
-      <form action="../controler/traitement.php" method="post">
+      <h1>Login</h1>
+      <form action="../controler/login.ctrl.php" method="post">
         <table>
           <tr>
             <td><label for="l">Identifiant</label></td><td><input id="l" class="input" type="text" name="lg"></td>
           </tr>
           <tr>
-            <td><label for="m">Mot de passe</label></td><td><input id="m" class="input" type="text" name="mdp"></td>
+            <td><label for="m">Mot de passe</label></td><td><input id="m" class="input" type="password" name="mdp"></td>
           </tr>
         </table>
-        <p><input type="submit" value="Envoyer"></p>
+        <p><input type="submit" value="Se connecter"></p>
       </form>
     </div>
 

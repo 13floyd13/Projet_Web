@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Main page</title>
-    <link rel="stylesheet" href="design/main.css">
+    <link rel="stylesheet" href="../view/design/main.css">
     <script>
       function openNav() {
         document.getElementById("mySidenav").style.width = "15%";
@@ -48,7 +48,7 @@
         <li><a class="supprimer" href="#">&times;</a><a href="#" onclick="closeNav(), openWorld(), closeTech()">World News</a></li>
         <li><a class="supprimer" href="#">&times;</a><a href="#" onclick="closeNav(), openTech(), closeWorld()">Tech News</a></li>
       </ul>
-      <a class="account" href="account.php">&#128100;</a>
+      <a class="account" href="../view/account.view.php">&#128100;</a>
     </div>
 
     <div id="world" class="news">
