@@ -1,6 +1,6 @@
 <?php
 require_once("util.php");
-require_once("collecteBD.php");
+require_once("../model/collecteBD.php");
 
 //urls flux
 $urls = array(
@@ -40,7 +40,7 @@ foreach ($nouvelles as $nouvelle) {
     $url_image = getURLImage($nouvelle);
     $img = "";
     if ($url_image != "") {
-        $img = 'images/image' . $id .'.'.extensionImage($url_image);
+        $img = '../data/images/image' . $id .'.'.extensionImage($url_image);
         file_put_contents($img, file_get_contents($url_image));
     }
     ?>
