@@ -1,7 +1,6 @@
 <?php
 
-
-class nouvelles_class
+class Nouvelle
 {
 //attributs
 private int $id;
