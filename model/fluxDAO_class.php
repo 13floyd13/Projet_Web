@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__).'/flux_class.php');
 
+
 class FluxDAO
 {
     //attributs
@@ -18,7 +19,7 @@ class FluxDAO
     }
 
 //méthodes
-    function get(int $url): Flux
+    function getFlux(int $url): Flux
     {
         $commandeRequete = "SELECT * FROM flux WHERE url=$url";
         $requete = $this->db->prepare($commandeRequete);
@@ -40,7 +41,7 @@ class FluxDAO
         $resultat = $requete->fetch()['url'];
         return $resultat;
     }
-    function isExistFlux($url): bool {
+    function isExistFlux(string $url): bool {
         $commandeRequete="SELECT url FROM flux WHERE url=$url";
         $requete=$this->db->prepare($commandeRequete);
         if($requete){
@@ -50,7 +51,7 @@ class FluxDAO
         $requete->closeCursor();
         return count($resultat) > 0;
     }
-    function addFlux($flux){
+    function addFlux(Flux $flux){
         if($this->isExistFlux($flux->url)){
             return;
         }
@@ -60,5 +61,29 @@ class FluxDAO
             $requete->execute();
         }
         $requete->closeCursor();
+    }
+    function removeFlux(Flux $flux){
+        if($this->isExistFlux($flux->url)){
+            $urlAdelete= $flux->getUrl();
+            $commandeRequete1="DELETE FROM nouvelles WHERE flux=$urlAdelete";
+            $requete1=$this->db->prepare($commandeRequete1);
+            if($requete1){
+                $requete1->execute();
+            }
+            $requete1->closeCursor();
+            $commandeRequete2="DELETE FROM flux_utilisateurs WHERE flux=$urlAdelete";
+            $requete2=$this->db->prepare($commandeRequete2);
+            if($requete2){
+                $requete2->execute();
+            }
+            $requete2->closeCursor();
+            $commandeRequete3="DELETE FROM flux WHERE url=$urlAdelete";
+            $requete3= $this->db->prepare($commandeRequete3);
+            if($requete3){
+                $requete3->execute();
+            }
+            $requete3->closeCursor();
+        }
+
     }
 }

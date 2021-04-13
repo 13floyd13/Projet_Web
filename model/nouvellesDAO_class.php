@@ -18,7 +18,7 @@ class NouvellesDAO
         }
     }
 
-    function getNouvelle($titre,$description): Nouvelle{
+    function getNouvelle(string $titre,string $description): Nouvelle{
         $titre= $this->db->quote($titre);
         $description=$this->db->quote($description);
         $commandeRequete="SELECT * FROM nouvelles WHERE titre=$titre AND description=$description";
@@ -28,6 +28,15 @@ class NouvellesDAO
         }
         $resultat = $requete->fetchAll(PDO::FETCH_CLASS,"Nouvelle");
         return $resultat[0];
+    }
+    function getNouvelles(): Nouvelle{
+        $commandeRequete="SELECT * FROM nouvelles";
+        $requete=$this->db->prepare($commandeRequete);
+        if ($requete){
+            $requete->execute();
+        }
+        $resultat= $requete->fetchAll(PDO::FETCH_CLASS,"Nouvelle");
+        return $resultat;
     }
 
     function getNombreNouvelles(): int {
@@ -39,7 +48,7 @@ class NouvellesDAO
         $resultat= $requete->fetch()['id'];
         return $resultat;
     }
-    function isExistNouvelle($titre,$description): bool{
+    function isExistNouvelle(string $titre,string $description): bool{
         $titre= $this->db->quote($titre);
         $description=$this->db->quote($description);
         $commandeRequete= "SELECT id FROM nouvelles WHERE description = $description AND titre = $titre";
@@ -51,7 +60,7 @@ class NouvellesDAO
         $requete->closeCursor();
         return count($resultat) >0;
     }
-    function addNouvelle($nouvelle){
+    function addNouvelle(Nouvelle $nouvelle){
         if ($this->isExistNouvelle($nouvelle->titre, $nouvelle->description)){
             return;
         }
@@ -71,6 +80,18 @@ class NouvellesDAO
             $requete->execute();
         }
         $requete->closeCursor();
+    }
+    function removeNouvelle(Nouvelle $nouvelle){
+        if ($this->isExistNouvelle($nouvelle->titre, $nouvelle->description)){
+            $idAdelete= $nouvelle->getId();
+            $commandeRequete="DELETE FROM flux WHERE id=$idAdelete";
+            $requete= $this->db->prepare($commandeRequete);
+            if($requete){
+                $requete->execute();
+            }
+            $requete->closeCursor();
+
+        }
     }
 
 

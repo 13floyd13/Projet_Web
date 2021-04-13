@@ -1,5 +1,6 @@
 <?php
-require_once(dirname(__FILE__).'/flux_utilisateurDAO_class.php');
+require_once(dirname(__FILE__).'/flux_utilisateur_class.php');
+
 
 class Flux_utilisateurDAO
 {
@@ -15,7 +16,7 @@ class Flux_utilisateurDAO
         }
     }
 
-    function getNomFlux_utilisateur($flux, $login): Flux_utilisateur
+    function getNomFlux_utilisateur(string $flux,string $login): Flux_utilisateur
     {
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM flux_utilisateur WHERE flux=$flux AND login=$login";
@@ -27,7 +28,7 @@ class Flux_utilisateurDAO
         return $resultat[0];
     }
 
-    function getFlux_utilisateur($nom, $login): Flux_utilisateur
+    function getFlux_utilisateur(string $nom,string $login): Flux_utilisateur
     {
         $login = $this->db->quote($login);
         $nom = $this->db->quote($nom);
@@ -51,7 +52,7 @@ class Flux_utilisateurDAO
         return $resultat;
     }
 
-    function isExistFlux_utilisateur($login, $flux): bool
+    function isExistFlux_utilisateur(string $login,string $flux): bool
     {
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM nouvelles WHERE flux=$flux AND login=$login";
@@ -63,7 +64,7 @@ class Flux_utilisateurDAO
         $requete->closeCursor();
         return count($resultat) > 0;
     }
-    function addFlux_utilisateur($flux_utilisateur){
+    function addFlux_utilisateur(Flux_utilisateur $flux_utilisateur){
         if($this->isExistFlux_utilisateur()){
             return;
         }
@@ -77,4 +78,17 @@ class Flux_utilisateurDAO
         }
         $requete->closeCursor();
     }
+    function removeFlux_utilisateur(Flux_utilisateur $flux_utilisateur){
+        if($this->isExistFlux_utilisateur()){
+            $fluxAdelete= $flux_utilisateur->getFlux();
+            $commandeRequete="DELETE FROM flux WHERE flux=$flux_utilisateur";
+            $requete= $this->db->prepare($commandeRequete);
+            if($requete){
+                $requete->execute();
+            }
+            $requete->closeCursor();
+        }
+        }
+
+
 }

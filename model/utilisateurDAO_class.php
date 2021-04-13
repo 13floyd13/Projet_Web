@@ -18,7 +18,7 @@ class UtilisateurDAO
         }
     }
 
-    function getUtilisateur($login): Utilisateur
+    function getUtilisateur(string $login): Utilisateur
     {
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM utilisateurs WHERE login=$login";
@@ -41,7 +41,7 @@ class UtilisateurDAO
         return $resultat;
     }
 
-    function isExistUtilisateur($login): bool
+    function isExistUtilisateur(string $login): bool
     {
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM utilisateurs WHERE login= $login";
@@ -54,7 +54,7 @@ class UtilisateurDAO
         return count($resultat) > 0;
     }
 
-    function addUtilisateur($utilisateur)
+    function addUtilisateur(Utilisateur $utilisateur)
     {
         if ($this->isExistUtilisateur($utilisateur->login)) {
             return;
@@ -67,5 +67,22 @@ class UtilisateurDAO
             $requete->execute();
         }
         $requete->closeCursor();
+    }
+    function removeUtilisateur(Utilisateur $utilisateur){
+        if ($this->isExistUtilisateur($utilisateur->login)){
+            $loginAdelete= $utilisateur->getLogin();
+            $commandeRequete1="DELETE FROM flux_utilisateurs WHERE login=$loginAdelete";
+            $requete1=$this->db->prepare($commandeRequete1);
+            if($requete1){
+                $requete1->execute();
+            }
+            $requete1->closeCursor();
+            $commandeRequete2="DELETE FROM flux WHERE login=$loginAdelete";
+            $requete2= $this->db->prepare($commandeRequete2);
+            if($requete2){
+                $requete2->execute();
+            }
+            $requete2->closeCursor();
+        }
     }
 }
