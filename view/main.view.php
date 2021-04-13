@@ -36,10 +36,9 @@
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <p>Bonjour userLogin</p>
-      <form action="../controler/ajout.php" method="post">
-        <input type="text" name="url" value="Entrez une URL">
-        <input type="submit" value="+">
-      </form>
+        <?php
+        require ("../controler/ajouter_flux.ctrl.php");
+        ?>
       <a href="#">Tous les flux</a>
       <a href="#">Non lus</a>
       <a href="#">Favoris</a>
