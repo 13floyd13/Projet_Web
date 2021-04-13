@@ -38,6 +38,15 @@ class NouvellesDAO
         $resultat= $requete->fetchAll(PDO::FETCH_CLASS,"Nouvelle");
         return $resultat;
     }
+    function getNouvellesParFlux(string $flux): Nouvelle{
+        $commandeRequete="SELECT * FROM nouvelles WHERE flux=$flux";
+        $requete=$this->db->prepare($commandeRequete);
+        if ($requete){
+            $requete->execute();
+        }
+        $resultat= $requete->fetchAll(PDO::FETCH_CLASS, "Nouvelle");
+        return $resultat;
+    }
 
     function getNombreNouvelles(): int {
         $commandeRequete = "SELECT COUNT(Distinct id) FROM nouvelles";
