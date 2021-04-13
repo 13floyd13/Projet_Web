@@ -16,6 +16,6 @@ document.getElementById("opt_lien").onclick = function() {
 
 function isChecked(checkbox) {
     let valeur;
-    valeur = checkbox.checked ? "checked" : "";
+    valeur = checkbox.checked ? "checked" : "non-checked";
     $.post("session_setter.php", {"id_bouton": checkbox.id, "check": valeur});
 }
