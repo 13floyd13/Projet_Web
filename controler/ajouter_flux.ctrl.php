@@ -8,9 +8,9 @@ $i_url = $_POST['i_url'];
 $i_nom_flux = $_POST['i_nom_flux'];
 $flux_db = new FluxDAO();
 $fluxUtilisateur_db = new Flux_utilisateurDAO();
-$fluxUtilisateur_url = $fluxUtilisateur_db->getURL($i_nom_flux);
+$fluxUtilisateur_url = $fluxUtilisateur_db->getFlux_utilisateur($i_nom_flux, $login);
 $fluxUtilisateur_nom = $fluxUtilisateur_db->getNomFlux_utilisateur($i_url, $login);
-$flux = $flux_db->get($i_url);
+$flux = $flux_db->getFlux($i_url);
 
 if (!isset($i_url)) {
     return ;
@@ -34,5 +34,6 @@ if ($flux == null) {
     $flux_db->addFlux($i_url);
 }
 
-// et on ajoute le flux dans flux_tulisateur
-$fluxUtilisateur_db->addFlux(); // modifier l'appel de méthode, pas encore définie
+// et on ajoute le flux dans flux_utilisateur
+$fluxUtilisateur = new Flux_utilisateur($flux, $login, $i_nom_flux, "");
+$fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur); // modifier l'appel de méthode, pas encore définie
