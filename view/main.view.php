@@ -47,6 +47,17 @@
       <ul>
         <li><a class="supprimer" href="#">&times;</a><a href="#" onclick="closeNav(), openWorld(), closeTech()">World News</a></li>
         <li><a class="supprimer" href="#">&times;</a><a href="#" onclick="closeNav(), openTech(), closeWorld()">Tech News</a></li>
+          <script>
+              var croix = document.getElementsByClassName("supprimer");
+              for (var i = 0 ; i < croix.length ; i++) {
+                  croix[i].onclick = function() {
+                      document.cookie = "url=" + i;
+                      <?php
+                        require("../controler/supprimer_flux_utilisateur.ctrl.php");
+                      ?>
+                  }
+              }
+          </script>
       </ul>
       <a class="account" href="account.php">&#128100;</a>
     </div>
