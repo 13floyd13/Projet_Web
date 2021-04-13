@@ -1,4 +1,6 @@
 <?php
+require('../model/utilisateurDAO_class.php');
+require('../model/utilisateur_class.php');
 
 if (isset($_POST['lg'])) {
   $login = $_POST['lg'];
@@ -12,8 +14,10 @@ if (isset($_POST['mdp'])) {
   $mdp = NULL;
 }
 
-if ($login == NULL || $mdp == NULL) {
+if ($login == NULL || $mdp == NULL || !isExistUtilisateur($login)) {
   require('../view/login.view.html');
 }else{
-  require('../view/main.view.php');
+  if (strcmp($mdp, getUtilisateur($login)->getMp())==0) {
+    require('../view/main.view.php');
+  }
 }
