@@ -1,0 +1,30 @@
+.return{
+  text-decoration: none;
+  color: #1ABBFF;
+  padding: 10px;
+  font-size: 3em;
+}
+
+body{
+  background-color: #181A1B;
+}
+
+#container{
+  width: 25%;
+  margin: auto;
+  margin-top: 10%;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #B1AAA0;
+  color: #B1AAA0;
+}
+
+#first{
+  margin-bottom: 10%;
+}
+
+.modif{
+  float: right;
+  font-size: 0.8em;
+  color: #1ABBFF;
+}

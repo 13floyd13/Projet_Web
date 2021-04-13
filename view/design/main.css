@@ -1,0 +1,92 @@
+#hamburger{
+  padding: 10px;
+}
+
+.menuBar {
+  width: 35px;
+  height: 5px;
+  background-color: #1ABBFF;
+  border-radius: 5px;
+  margin: 6px 0;
+}
+
+.menuBar:hover{
+  cursor: pointer;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+body{
+  background-color: #181A1B;
+  color: #B1AAA0;
+}
+
+.news {
+  position: absolute;
+  width: 0;
+  left: 25%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+article{
+  padding: 10px;
+  margin-bottom: 5%;
+  border-radius: 5px;
+  border: 1px solid #B1AAA0;
+}
+
+img{
+  float: right;
+  width: 10%;
+}
+
+.supprimer{
+  float: right;
+}
+
+.account{
+  position: absolute;
+  top: 85%;
+  left: 0;
+}
