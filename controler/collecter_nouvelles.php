@@ -1,6 +1,6 @@
 <?php
-require("../model/nouvellesDAO_class.php");
-require("../model/flux_class.php");
+require_once("../model/nouvellesDAO_class.php");
+require_once("../model/flux_class.php");
 
 $xml = simplexml_load_file($i_url);
 $nouvelles_db = new NouvellesDAO();
