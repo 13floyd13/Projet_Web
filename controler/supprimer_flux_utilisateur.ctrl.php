@@ -1,6 +1,6 @@
 <?php
 
-$url = $_COOKIE['url'];
+$url = $_POST['url'];
 $flux_utilisateurDAO = new Flux_utilisateurDAO();
 $flux = new Flux($url);
 

@@ -44,63 +44,19 @@
       <a href="#">Favoris</a>
       <a href="#">Catégories</a>
       <ul>
-        <li><form action="" method="post"><input class="supprimer" type="submit" value="&times;"></form><a href="#" onclick="closeNav(), openWorld(), closeTech()">World News</a></li>
-        <li><form action="" method="post"><input class="supprimer" type="submit" value="&times;"></form><a href="#" onclick="closeNav(), openTech(), closeWorld()">Tech News</a></li>
-          <script>
-              var croix = document.getElementsByClassName("supprimer");
-              for (var i = 0 ; i < croix.length ; i++) {
-                  croix[i].onclick = function() {
-                      document.cookie = "url=" + i;
-                      <?php
-                        require("../controler/supprimer_flux_utilisateur.ctrl.php");
-                      ?>
-                  }
-              }
-          </script>
+          <?php
+            $flux_utilisateurDAO = new Flux_utilisateurDAO();
+            $fluxs_utilisateur = $flux_utilisateurDAO->getFlux_utilisateurByLogin($_SESSION['login']);
+            foreach ($fluxs_utilisateur as $flux_utilisateur) { ?>
+                <li><form action="../controler/supprimer_flux_utilisateur.ctrl.php" method="post">
+                        <input type="hidden" id="url" value="<?= $flux_utilisateur->getNom() ?>">
+                        <input class="supprimer" type="submit" value="&times;">
+                    </form>
+                    <a href="#" onclick="closeNav(), openWorld(), closeTech()">World News</a>
+                </li>
+            <?php}?>
       </ul>
       <a class="account" href="../view/account.view.php">&#128100;</a>
-    </div>
-
-    <div id="world" class="news">
-      <article>
-        <img src="" alt="image article 1">
-        <h3>Titre article w1</h3>
-        <p>Description article 1</p>
-        <a href="#">URL article 1</a>
-      </article>
-      <article>
-        <img src="" alt="image article 2">
-        <h3>Titre article w2</h3>
-        <p>Description article 2</p>
-        <a href="#">URL article 2</a>
-      </article>
-      <article>
-        <img src="" alt="image article 3">
-        <h3>Titre article w3</h3>
-        <p>Description article 3</p>
-        <a href="#">URL article 3</a>
-      </article>
-    </div>
-
-    <div id="tech" class="news">
-      <article>
-        <img src="" alt="image article 1">
-        <h3>Titre article t1</h3>
-        <p>Description article 1</p>
-        <a href="#">URL article 1</a>
-      </article>
-      <article>
-        <img src="" alt="image article 2">
-        <h3>Titre article t2</h3>
-        <p>Description article 2</p>
-        <a href="#">URL article 2</a>
-      </article>
-      <article>
-        <img src="" alt="image article 3">
-        <h3>Titre article t3</h3>
-        <p>Description article 3</p>
-        <a href="#">URL article 3</a>
-      </article>
     </div>
 
   </body>
