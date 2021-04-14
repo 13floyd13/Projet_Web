@@ -7,9 +7,10 @@ session_start();
 
 $login = $_SESSION['login'];
 
-if (!isset($_POST['i_url']) || !isset($_POST['i_nom_flux'])) {
+if (!isset($_POST['i_url'])) {
     return ;
 }
+
 $i_url = $_POST['i_url'];
 $i_nom_flux = $_POST['i_nom_flux'];
 $flux_db = new FluxDAO();
@@ -18,14 +19,10 @@ $fluxUtilisateur_db = new Flux_utilisateurDAO();
 if (!isset($i_url)) {
     return ;
 }
+
 if (!isset($i_nom_flux) || (isset($i_nom_flux) && empty($i_nom_flux))) {
     $i_nom_flux = (string) simplexml_load_file($i_url)->channel->title;
 }
-
-var_dump($i_nom_flux);
-var_dump($login);
-
-
 
 // ce flux n'est pas dans flux_utilisateur
 if ($fluxUtilisateur_db->isExistFlux_utilisateur($login, $i_nom_flux)) {
