@@ -24,5 +24,6 @@ if ($oi === "" || $ni === "" || !$dao->isExistUtilisateur($oi) || strcmp($monlog
   require('../view/account_log_change.html');
 }else{
   $dao->getUtilisateur($oi)->setLogin($ni);
+  //$_SESSION['login'] = $ni;
   require('../view/account.view.php');
 }
