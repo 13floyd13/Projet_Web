@@ -70,7 +70,7 @@ class NouvellesDAO
         return count($resultat) >0;
     }
     function addNouvelle(Nouvelle $nouvelle){
-        if ($this->isExistNouvelle($nouvelle->titre, $nouvelle->description)){
+        if ($this->isExistNouvelle($nouvelle->getTitre(), $nouvelle->getDescription())){
             return;
         }
         $url_image = getURLImage($nouvelle);
@@ -78,12 +78,12 @@ class NouvellesDAO
         if ($url_image != "")
             $img = '../data/images/image' . getNombreNouvelles($this->db) . '.' . extensionImage($url_image);
 
-        $titre = $this->db->quote($nouvelle->titre);
-        $description = $this->db->quote($nouvelle->description);
+        $titre = $this->db->quote($nouvelle->getTitre());
+        $description = $this->db->quote($nouvelle->getDescription());
         $pubDate = strftime("%Y-%m-%d %H:%M:%S", strtotime($nouvelle->pubDate));
-        $flux = $this->db->quote($nouvelle->flux);
+        $flux = $this->db->quote($nouvelle->getFlux());
 
-        $commandeRequete = 'INSERT INTO nouvelles(date, titre, description, lien, image, flux) VALUES(\'' . $pubDate . '\', ' . $titre . ', ' . $description . ', \'' . $nouvelle->link . '\', \'' . $img . '\', ' . $nouvelle->flux . ')';
+        $commandeRequete = 'INSERT INTO nouvelles(date, titre, description, lien, image, flux) VALUES(\'' . $pubDate . '\', ' . $titre . ', ' . $description . ', \'' . $nouvelle->link . '\', \'' . $img . '\', ' . $nouvelle->getFlux() . ')';
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
@@ -91,7 +91,7 @@ class NouvellesDAO
         $requete->closeCursor();
     }
     function removeNouvelle(Nouvelle $nouvelle){
-        if ($this->isExistNouvelle($nouvelle->titre, $nouvelle->description)){
+        if ($this->isExistNouvelle($nouvelle->getTitre(), $nouvelle->getDescription())){
             $idAdelete= $nouvelle->getId();
             $commandeRequete="DELETE FROM flux WHERE id=$idAdelete";
             $requete= $this->db->prepare($commandeRequete);
