@@ -7,6 +7,7 @@
 
 body{
   background-color: #181A1B;
+  font-family: Arial Black, sans-serif;
 }
 
 #container{
@@ -14,8 +15,8 @@ body{
   margin: auto;
   margin-top: 10%;
   padding: 20px;
-  border-radius: 10px;
-  border: 1px solid #B1AAA0;
+  border-radius: 5px;
+  background-color: #384454;
   color: #B1AAA0;
 }
 

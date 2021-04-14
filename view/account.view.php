@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Account page</title>
-    <link rel="stylesheet" href="design/account.css">
+    <link rel="stylesheet" href="../view/design/account.css">
   </head>
   <body>
 
     <header>
-      <a class="return" href="../view/main.view.php">&#8592;</a></p>
+      <a class="return" href="../view/main.view.php">&#8592;</a>
     </header>
 
     <div id="container">
