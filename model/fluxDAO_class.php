@@ -58,7 +58,7 @@ class FluxDAO
         if($this->isExistFlux($flux->getUrl())){
             return;
         }
-        $commandeRequete="INSERT INTO flux(url) VALUES($flux->getUrl())";
+        $commandeRequete='INSERT INTO flux(url) VALUES(\'' .$flux->getUrl() .'\')';
         $requete= $this->db->prepare($commandeRequete);
         if($requete){
             $requete->execute();
