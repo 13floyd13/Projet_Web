@@ -21,7 +21,7 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #384454;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -55,6 +55,7 @@
 
 body{
   background-color: #181A1B;
+  font-family: Arial Black, sans-serif;
   color: #B1AAA0;
 }
 
@@ -67,6 +68,7 @@ body{
   flex-wrap: wrap;
   flex-direction: column;
   overflow-x: hidden;
+  background-color: #384454;
 }
 
 article{
