@@ -2,15 +2,14 @@
 session_start();
 ?>
 
-<title>Main page</title>
-<link rel="stylesheet" href="../view/design/main.css">
 
-
-<div id="mySidenav" class="sidenav">
+<link rel="stylesheet" href="../view/design/nav.css">
+<div id="nav">
   <p>Bonjour <?= $_SESSION['login'] ?></p>
     <?php
     require ("../controler/ajouter_flux.ctrl.php");
     ?>
+    <hr>
   <a href="#">Tous les flux</a>
   <a href="#">Non lus</a>
   <a href="#">Favoris</a>
@@ -24,7 +23,7 @@ session_start();
                     <input type="hidden" id="url" value="<?= $flux_utilisateur->getNom() ?>">
                     <input class="supprimer" type="submit" value="&times;">
                 </form>
-                <a href="#" onclick="closeNav(), openWorld(), closeTech()"><?= $flux_utilisateur->getNom() ?></a>
+                <a href="#"><?= $flux_utilisateur->getNom() ?></a>
             </li>
         <?php } ?>
   </ul>

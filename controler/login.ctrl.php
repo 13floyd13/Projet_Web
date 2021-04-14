@@ -21,7 +21,7 @@ if ($login === "" || $mdp === "" || !$dao->isExistUtilisateur($login)) {
 } else {
   if (strcmp($mdp, $dao->getUtilisateur($login)->getMp())==0) {
     $_SESSION['login'] = $login;
-    require('../view/nav.view.php');
+    require('../view/actus.view.php');
   } else {
     require('../view/login.view.html');
   }
