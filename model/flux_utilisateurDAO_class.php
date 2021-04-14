@@ -105,6 +105,14 @@ class Flux_utilisateurDAO
             }
         }
     }
-
+    function getCategories($login): array {
+        $login = $this->db->quote($login);
+        $commandeRequete = "SELECT DISTINCT categorie FROM flux_utilisateur WHERE login=$login ORDER BY categorie";
+        $requete = $this->db->prepare($commandeRequete);
+        if ($requete) {
+            $requete->execute();
+            $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
+            return $resultat;
+    }
 
 }
