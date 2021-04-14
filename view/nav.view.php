@@ -23,7 +23,7 @@ session_start();
                     <input type="hidden" id="url" value="<?= $flux_utilisateur->getNom() ?>">
                     <input class="supprimer" type="submit" value="&times;">
                 </form>
-                <a href="../controler/afficher_nouvelles_flux_selectionne.ctrl.php&flux=<?= $fluxs_utilisateur->getNom() ?>"><?= $flux_utilisateur->getNom() ?></a>
+                <a href="../controler/afficher_nouvelles_flux_selectionne.ctrl.php&flux=<?= $flux_utilisateur->getNom() ?>"><?= $flux_utilisateur->getNom() ?></a>
             </li>
         <?php } ?>
   </ul>

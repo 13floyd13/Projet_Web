@@ -73,7 +73,7 @@ class NouvellesDAO
         }
     }
 
-    function addNouvelle(SimpleXMLElement $nouvelle, Flux $flux){
+    /*function addNouvelle(SimpleXMLElement $nouvelle, Flux $flux){
         if ($this->isExistNouvelle($nouvelle->title, $nouvelle->description)){
             return;
         }
@@ -88,6 +88,24 @@ class NouvellesDAO
         $flux = $this->db->quote($flux->getUrl());
 
         $commandeRequete = 'INSERT INTO nouvelles(date, titre, description, lien, image, flux) VALUES(\'' . $pubDate . '\', ' . $titre . ', ' . $description . ', \'' . $nouvelle->link . '\', \'' . $img . '\', ' . $flux . ')';
+        $requete = $this->db->prepare($commandeRequete);
+        if ($requete) {
+            $requete->execute();
+            $requete->closeCursor();
+        }
+    }*/
+
+    function addNouvelle(Nouvelle $nouvelle){
+        if ($this->isExistNouvelle($nouvelle->getTitre(), $nouvelle->getDescription())){
+            return;
+        }
+        $img = $nouvelle->getImage();
+        $titre = $this->db->quote($nouvelle->getTitre());
+        $description = $this->db->quote($nouvelle->getDescription());
+        $pubDate = strftime("%Y-%m-%d %H:%M:%S", strtotime($nouvelle->getDate()));
+        $flux = $this->db->quote($nouvelle->getFlux());
+
+        $commandeRequete = 'INSERT INTO nouvelles(date, titre, description, lien, image, flux) VALUES(\'' . $pubDate . '\', ' . $titre . ', ' . $description . ', \'' . $nouvelle->getLien() . '\', \'' . $img . '\', ' . $flux . ')';
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
