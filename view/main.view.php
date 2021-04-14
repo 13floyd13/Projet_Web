@@ -44,8 +44,8 @@
       <a href="#">Favoris</a>
       <a href="#">Catégories</a>
       <ul>
-        <li><a class="supprimer" href="#">&times;</a><a href="#" onclick="closeNav(), openWorld(), closeTech()">World News</a></li>
-        <li><a class="supprimer" href="#">&times;</a><a href="#" onclick="closeNav(), openTech(), closeWorld()">Tech News</a></li>
+        <li><input class="supprimer" type="submit" value="&times;"><a href="#" onclick="closeNav(), openWorld(), closeTech()">World News</a></li>
+        <li><input class="supprimer" type="submit" value="&times;"><a href="#" onclick="closeNav(), openTech(), closeWorld()">Tech News</a></li>
           <script>
               var croix = document.getElementsByClassName("supprimer");
               for (var i = 0 ; i < croix.length ; i++) {
