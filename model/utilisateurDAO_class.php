@@ -27,7 +27,6 @@ class UtilisateurDAO
             $requete->execute();
         }
         $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Utilisateur");
-
         return $resultat[0];
     }
 
