@@ -1,6 +1,5 @@
 <?php
 require('../model/utilisateurDAO_class.php');
-require('../model/utilisateur_class.php');
 
 if (isset($_POST['lg'])) {
   $login = $_POST['lg'];

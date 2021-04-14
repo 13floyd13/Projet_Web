@@ -1,2 +1,2 @@
 <?php
-header("./controleur/login.ctrl.php");
+header('Location: controler/login.ctrl.php');
