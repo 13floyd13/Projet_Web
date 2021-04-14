@@ -2,6 +2,7 @@
 require_once(dirname(__FILE__).'/flux_class.php');
 
 
+
 class FluxDAO
 {
     //attributs
@@ -52,10 +53,10 @@ class FluxDAO
         return count($resultat) > 0;
     }
     function addFlux(Flux $flux){
-        if($this->isExistFlux($flux->url)){
+        if($this->isExistFlux($flux->getUrl())){
             return;
         }
-        $commandeRequete="INSERT INTO flux(url) VALUES($flux->url)";
+        $commandeRequete="INSERT INTO flux(url) VALUES($flux->getUrl())";
         $requete= $this->db->prepare($commandeRequete);
         if($requete){
             $requete->execute();
@@ -63,7 +64,7 @@ class FluxDAO
         $requete->closeCursor();
     }
     function removeFlux(Flux $flux){
-        if($this->isExistFlux($flux->url)){
+        if($this->isExistFlux($flux->getUrl())){
             $urlAdelete= $flux->getUrl();
             $commandeRequete1="DELETE FROM nouvelles WHERE flux=$urlAdelete";
             $requete1=$this->db->prepare($commandeRequete1);
