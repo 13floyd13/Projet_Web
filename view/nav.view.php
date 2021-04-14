@@ -10,7 +10,7 @@ session_start();
     require ("../controler/ajouter_flux.ctrl.php");
     ?>
     <hr>
-  <a href="#">Tous les flux</a>
+  <a href="../controler/selection_nouvelles.ctrl.php">Tous les flux</a>
   <a href="#">Non lus</a>
   <a href="#">Favoris</a>
   <a href="#">Catégories</a>
@@ -23,7 +23,7 @@ session_start();
                     <input type="hidden" id="url" value="<?= $flux_utilisateur->getNom() ?>">
                     <input class="supprimer" type="submit" value="&times;">
                 </form>
-                <a href="../controler/afficher_nouvelles_flux_selectionne.ctrl.php&flux=<?= $flux_utilisateur->getNom() ?>"><?= $flux_utilisateur->getNom() ?></a>
+                <a href="../controler/selection_nouvelles.ctrl.php&flux=<?= $flux_utilisateur->getNom() ?>"><?= $flux_utilisateur->getNom() ?></a>
             </li>
         <?php } ?>
   </ul>

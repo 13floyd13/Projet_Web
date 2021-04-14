@@ -22,7 +22,7 @@ if ($login === "" || $mdp === "" || !$dao->isExistUtilisateur($login)) {
   if (strcmp($mdp, $dao->getUtilisateur($login)->getMp())==0) {
     $_SESSION['login'] = $login;
     require("../controler/actualisation_flux.php");
-    require('../view/actus.view.php');
+    require('../controler/actus.ctrl.php');
   } else {
     require('../view/login.view.html');
   }
