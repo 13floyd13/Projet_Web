@@ -86,7 +86,7 @@ class Flux_utilisateurDAO
         $login = $this->db->quote($flux_utilisateur->getLogin());
         $nom = $this->db->quote($flux_utilisateur->getNom());
         $categorie = $this->db->quote($flux_utilisateur->getCategorie());
-        $commandeRequete = 'INSERT INTO nouvelles(flux, login, nom, categorie) VALUES(\'' . $flux_utilisateur->getFlux() . '\', ' . $login . ', ' . $nom . ', ' . $categorie . ')';
+        $commandeRequete = 'INSERT INTO flux_utilisateur(flux, login, nom, categorie) VALUES(\'' . $flux_utilisateur->getFlux() . '\', ' . $login . ', ' . $nom . ', ' . $categorie . ')';
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
