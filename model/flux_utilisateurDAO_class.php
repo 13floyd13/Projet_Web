@@ -41,6 +41,17 @@ class Flux_utilisateurDAO
         $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Flux_utilisateur");
         return $resultat[0];
     }
+    function getFlux_utilisateurByLogin(string $login): array
+    {
+        $login = $this->db->quote($login);
+        $commandeRequete = "SELECT * FROM flux_utilisateur WHERE login=$login";
+        $requete = $this->db->prepare($commandeRequete);
+        if ($requete) {
+            $requete->execute();
+        }
+        $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Flux_utilisateur");
+        return $resultat;
+    }
 
     function getNombreFlux_utilisateur(): int
     {
