@@ -40,14 +40,13 @@ class NouvellesDAO
     }
 
     function getNouvellesParFlux(string $flux): array {
-        $commandeRequete="SELECT * FROM nouvelles WHERE flux=$flux";
+        $commandeRequete="SELECT * FROM nouvelles WHERE flux=\"$flux\"";
         $requete=$this->db->prepare($commandeRequete);
         if ($requete){
             $requete->execute();
             $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Nouvelle");
             return $resultat;
         }
-
     }
 
     function getNombreNouvelles(): int {
@@ -60,7 +59,7 @@ class NouvellesDAO
         }
     }
 
-    function isExistNouvelle(string $titre,string $description): bool{
+    function isExistNouvelle(string $titre,string $description): bool {
         $titre= $this->db->quote($titre);
         $description=$this->db->quote($description);
         $commandeRequete= "SELECT id FROM nouvelles WHERE description = $description AND titre = $titre";
@@ -71,6 +70,7 @@ class NouvellesDAO
             $requete->closeCursor();
             return count($resultat) >0;
         }
+        return false;
     }
 
     /*function addNouvelle(SimpleXMLElement $nouvelle, Flux $flux){

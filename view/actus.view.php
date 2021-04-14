@@ -3,7 +3,7 @@
 <div id="actus">
     <title>Main page</title>
     <?php
-    include("nav.view.php");
-    include("$page");
+    include("../view/nav.view.php");
+    include("../controler/selection_nouvelles.ctrl.php");
     ?>
 </div>

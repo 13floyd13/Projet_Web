@@ -10,7 +10,7 @@ session_start();
     require ("../controler/ajouter_flux.ctrl.php");
     ?>
     <hr>
-  <a href="../controler/selection_nouvelles.ctrl.php">Tous les flux</a>
+  <a href="../controler/actus.ctrl.php">Tous les flux</a>
   <a href="#">Non lus</a>
   <a href="#">Favoris</a>
   <a href="#">Catégories</a>
@@ -19,11 +19,11 @@ session_start();
         $flux_utilisateurDAO = new Flux_utilisateurDAO();
         $fluxs_utilisateur = $flux_utilisateurDAO->getFlux_utilisateurByLogin($_SESSION['login']);
         foreach ($fluxs_utilisateur as $flux_utilisateur) { ?>
-            <li><form action="nav.view.php" method="post">
+            <li><form action="../controler/actus.ctrl.php" method="post">
                     <input type="hidden" id="url" value="<?= $flux_utilisateur->getNom() ?>">
                     <input class="supprimer" type="submit" value="&times;">
                 </form>
-                <a href="../controler/selection_nouvelles.ctrl.php&flux=<?= $flux_utilisateur->getNom() ?>"><?= $flux_utilisateur->getNom() ?></a>
+                <a href="../controler/actus.ctrl.php?flux=<?= $flux_utilisateur->getNom() ?>"><?= $flux_utilisateur->getNom() ?></a>
             </li>
         <?php } ?>
   </ul>

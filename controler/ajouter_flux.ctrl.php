@@ -47,3 +47,4 @@ try {
     $flux_db->addFlux($flux);
 }
 
+require_once ("actualisation_flux.php");
