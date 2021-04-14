@@ -1,6 +1,4 @@
 <?php
-
-
 class Flux_utilisateur
 {
 //attributs
