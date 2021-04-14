@@ -80,11 +80,16 @@ article{
 
 img{
   float: right;
-  width: 10%;
+  max-width: 10%;
+  height: auto;
 }
 
 .supprimer{
   float: right;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  font-size: 1.5em;
 }
 
 .account{
