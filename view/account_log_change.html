@@ -13,15 +13,17 @@
 
     <div id="container">
       <form action="../controler/modifier_login.ctrl.php" method="post">
-        <div>
-          <label for="old_id">Entrez votre ancien identifiant</label>
-          <input id="old_id" type="text" name="oi">
-          <br>
-          <label for="new_id">Entrez votre nouvel identifiant</label>
-          <input id="new_id" type="text" name="ni">
-          <br>
-          <input type="submit" value="Validez">
-        </div>
+        <table>
+          <tr>
+            <td><label for="old_id">Ancien identifiant</label></td>
+            <td><input id="old_id" type="text" name="oi"></td>
+          </tr>
+          <tr>
+            <td><label for="new_id">Nouvel identifiant</label></td>
+            <td><input id="new_id" type="text" name="ni"></td>
+          </tr>
+        </table>
+        <input type="submit" value="Validez">
       </form>
     </div>
 

@@ -2,10 +2,6 @@
 require_once('../model/utilisateurDAO_class.php');
 session_start();
 
-//à enlever
-$_SESSION['login'] = 'admin';
-//
-
 $dao = new UtilisateurDAO;
 $etoile = "";
 $mdp = $dao->getUtilisateur($_SESSION['login'])->getMp();
