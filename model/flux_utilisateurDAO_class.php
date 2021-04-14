@@ -25,7 +25,7 @@ class Flux_utilisateurDAO
         if ($requete) {
             $requete->execute();
         }
-        $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Flux_utilisateur");
+        $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
         return $resultat[0];
     }
 
@@ -38,7 +38,7 @@ class Flux_utilisateurDAO
         if ($requete) {
             $requete->execute();
         }
-        $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Flux_utilisateur");
+        $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
         return $resultat[0];
     }
     function getFlux_utilisateurByLogin(string $login): array
@@ -49,7 +49,7 @@ class Flux_utilisateurDAO
         if ($requete) {
             $requete->execute();
         }
-        $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Flux_utilisateur");
+        $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
         return $resultat;
     }
 
