@@ -8,7 +8,7 @@ private string $url;
     /**
      * Flux constructor.
      */
-    function __construct(string $url){
+    function __construct(string $url = ""){
         $this->url= $url;
     }
 

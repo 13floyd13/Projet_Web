@@ -10,7 +10,7 @@ private string $nom;
 private string $categorie;
 
 //constructeur
-    public function __construct(string $flux, string $login, string $nom,string $categorie){
+    public function __construct(string $flux = "", string $login = "", string $nom = "", string $categorie = ""){
         $this->flux=$flux;
         $this->login=$login;
         $this->nom=$nom;
