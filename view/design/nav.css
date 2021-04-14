@@ -1,19 +1,40 @@
 #nav {
     display: flex;
     flex-direction: column;
-    color: white;
+    color: #B1AAA0;
     background-color: #222c35;
     width: 15%;
     height: 100%;
     padding: 0em 1em;
 }
 
-#nav > a {
+a {
     text-decoration-line: none;
-    color: white;
+    color: #B1AAA0;
+    font-size: 1.5em;
+    padding: 5px;
 }
 
 #nav > p:first-child {
     font-weight: bold;
     text-align: center;
+}
+
+.supprimer{
+  float: right;
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  font-size: 1.5em;
+}
+
+.supprimer:hover{
+  cursor: pointer;
+}
+
+.account{
+  font-size: 3em;
+  position: absolute;
+  top: 90%;
+  left: 1%;
 }
