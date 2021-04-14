@@ -26,6 +26,9 @@ body{
 
 .modif{
   float: right;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
   font-size: 0.8em;
   color: #1ABBFF;
 }
