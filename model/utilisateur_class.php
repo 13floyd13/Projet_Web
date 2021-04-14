@@ -8,7 +8,7 @@ private string $login;
 private string $mp;
 
 //constructeurs
-function __construct(string $login, string $mp)
+    public function __construct(string $login, string $mp)
 {
      $this->login=$login;
      $this->mp=$mp;
