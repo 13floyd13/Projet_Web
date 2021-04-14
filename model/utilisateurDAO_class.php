@@ -12,7 +12,7 @@ class UtilisateurDAO
     {
         $database = 'sqlite:' . dirname(__FILE__) . '/../data/newsDB'; // Data source name
         try {
-            $db = new PDO($database);
+            $this->db = new PDO($database);
         } catch (PDOException $e) {
             die ("Erreur : " . $e->getMessage());
         }
@@ -26,7 +26,8 @@ class UtilisateurDAO
         if ($requete) {
             $requete->execute();
         }
-        $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Utilisateur");
+        $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Utilisateur");
+
         return $resultat[0];
     }
 

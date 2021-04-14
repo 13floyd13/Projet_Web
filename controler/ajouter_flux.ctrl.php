@@ -3,7 +3,8 @@ require("../model/fluxDAO_class.php");
 require("../model/flux_utilisateurDAO_class.php");
 require_once("../view/ajouter_flux.view.php");
 
-$login = $_SESSION['login'];
+// $login = $_SESSION['login'];
+$login = "admin";   // ********* À ENLEVER
 $i_url = $_POST['i_url'];
 $i_nom_flux = $_POST['i_nom_flux'];
 $flux_db = new FluxDAO();

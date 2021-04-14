@@ -11,7 +11,7 @@ class Flux_utilisateurDAO
     {
         $database = 'sqlite:' . dirname(__FILE__) . '/../data/newsDB'; // Data source name
         try {
-            $db = new PDO($database);
+            $this->db = new PDO($database);
         } catch (PDOException $e) {
             die ("Erreur : " . $e->getMessage());
         }
