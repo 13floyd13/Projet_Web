@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__).'/utilisateur_class.php');
+require_once("../model/utilisateur_class.php");
 
 
 class UtilisateurDAO
