@@ -25,9 +25,9 @@ class UtilisateurDAO
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
+            $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Utilisateur");
+            return $resultat[0];
         }
-        $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Utilisateur");
-        return $resultat[0];
     }
 
     function getNombreUtilisateurs()
@@ -36,9 +36,9 @@ class UtilisateurDAO
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
+            $resultat = $requete->fetch()['login'];
+            return $resultat;
         }
-        $resultat = $requete->fetch()['login'];
-        return $resultat;
     }
 
     function isExistUtilisateur(string $login): bool
@@ -48,10 +48,10 @@ class UtilisateurDAO
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
+            $resultat = $requete->fetchAll();
+            $requete->closeCursor();
+            return count($resultat) > 0;
         }
-        $resultat = $requete->fetchAll();
-        $requete->closeCursor();
-        return count($resultat) > 0;
     }
 
     function addUtilisateur(Utilisateur $utilisateur)
@@ -65,9 +65,10 @@ class UtilisateurDAO
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
+            $requete->closeCursor();
         }
-        $requete->closeCursor();
     }
+
     function removeUtilisateur(Utilisateur $utilisateur){
         if ($this->isExistUtilisateur($utilisateur->getLogin())){
             $loginAdelete= $utilisateur->getLogin();

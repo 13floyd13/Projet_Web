@@ -1,4 +1,5 @@
 <?php
+session_start();
 $opt_titreToCheck = toCheck("opt_titreToCheck");
 $opt_imageToCheck = toCheck("opt_imageToCheck");
 $opt_descriptionToCheck = toCheck("opt_descriptionToCheck");

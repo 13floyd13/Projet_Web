@@ -3,8 +3,9 @@ require("../model/fluxDAO_class.php");
 require("../model/flux_utilisateurDAO_class.php");
 require_once("../view/ajouter_flux.view.php");
 
-// $login = $_SESSION['login'];
-$login = "admin";   // ********* À ENLEVER
+session_start();
+
+$login = $_SESSION['login'];
 
 if (!isset($_POST['i_url']) || !isset($_POST['i_nom_flux'])) {
     return ;
@@ -13,32 +14,35 @@ $i_url = $_POST['i_url'];
 $i_nom_flux = $_POST['i_nom_flux'];
 $flux_db = new FluxDAO();
 $fluxUtilisateur_db = new Flux_utilisateurDAO();
-$fluxUtilisateur_url = $fluxUtilisateur_db->getFlux_utilisateur($i_nom_flux, $login);
-$fluxUtilisateur_nom = $fluxUtilisateur_db->getNomFlux_utilisateur($i_url, $login);
-$flux = $flux_db->getFlux($i_url);
 
 if (!isset($i_url)) {
     return ;
 }
 if (!isset($i_nom_flux) || (isset($i_nom_flux) && empty($i_nom_flux))) {
-    $i_nom_flux = simplexml_load_file($i_url)->channel->title;
+    $i_nom_flux = (string) simplexml_load_file($i_url)->channel->title;
 }
 
-if ($fluxUtilisateur_url) {
-    // message d'erreur "Ce flux est déjà dans votre liste"
+var_dump($i_nom_flux);
+var_dump($login);
+
+// ce flux n'est pas dans flux_utilisateur
+if ($fluxUtilisateur_db->isExistFlux_utilisateur($login, $i_nom_flux)) {
+    // message d'erreur : "Ce nom est déjà dans votre liste"
 }
 
+try {
+    $fluxUtilisateur_db->getNomFlux_utilisateur($i_url, $login);
 
-if ($fluxUtilisateur_nom) {
-    // message d'erreur "Ce nom est déjà utilisé pour un autre flux"
+} catch (TypeError $t) {
+    $fluxUtilisateur = new Flux_utilisateur($i_url, $login, $i_nom_flux, "");
+    $fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur);
 }
 
-// le flux n'existe pas dans la liste de l'utilisateur
-if ($flux == null) {
-    // on ajoute ce flux dans la table des flux
-    $flux_db->addFlux($i_url);
+try {
+    $flux_db->getFlux($i_url);
+    // plante si existe déjà dans la liste des flux
+} catch (TypeError $t) {
+    $flux = new Flux($i_url);
+    $flux_db->addFlux($flux);
 }
 
-// et on ajoute le flux dans flux_utilisateur
-$fluxUtilisateur = new Flux_utilisateur($flux, $login, $i_nom_flux, "");
-$fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur); // modifier l'appel de méthode, pas encore définie
