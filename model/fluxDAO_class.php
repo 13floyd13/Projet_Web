@@ -27,7 +27,7 @@ class FluxDAO
         if ($requete) {
             $requete->execute();
         }
-        $resultat = $requete->fetchAll(PDO::FETCH_CLASS, "Flux");
+        $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux");
         return $resultat[0];
 
     }

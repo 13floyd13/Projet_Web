@@ -26,7 +26,7 @@ class NouvellesDAO
         if($requete) {
             $requete->execute();
         }
-        $resultat = $requete->fetchAll(PDO::FETCH_CLASS,"Nouvelle");
+        $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"Nouvelle");
         return $resultat[0];
     }
     function getNouvelles(): Nouvelle{
@@ -35,7 +35,7 @@ class NouvellesDAO
         if ($requete){
             $requete->execute();
         }
-        $resultat= $requete->fetchAll(PDO::FETCH_CLASS,"Nouvelle");
+        $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"Nouvelle");
         return $resultat;
     }
     function getNouvellesParFlux(string $flux): Nouvelle{
@@ -44,7 +44,7 @@ class NouvellesDAO
         if ($requete){
             $requete->execute();
         }
-        $resultat= $requete->fetchAll(PDO::FETCH_CLASS, "Nouvelle");
+        $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Nouvelle");
         return $resultat;
     }
 
