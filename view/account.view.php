@@ -12,14 +12,14 @@
     </header>
 
     <div id="container">
-      <form id="first" action="../controler/modifLogin.php" method="post">
+      <form id="first" action="../controler/modifLogin.ctrl.php" method="post">
         <article>
           <a class="modif" href="#">(modifier)</a>
           <h1>Votre Identifiant</h1>
           <p>userLogin</p>
         </article>
       </form>
-      <form action="../controler/modifMdp.php" method="post">
+      <form action="../controler/modifMdp.ctrl.php" method="post">
         <article>
           <a class="modif" href="#">(modifier)</a>
           <h1>Votre mot de passe</h1>
