@@ -20,16 +20,15 @@ class FluxDAO
     }
 
 //méthodes
-    function getFlux(int $url): Flux
+    function getFlux(string $url): Flux
     {
         $commandeRequete = "SELECT * FROM flux WHERE url=$url";
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
+            $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux");
+            return $resultat[0];
         }
-        $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux");
-        return $resultat[0];
-
     }
 
     function getNombreFlux(): int
@@ -38,20 +37,23 @@ class FluxDAO
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
+            $resultat = $requete->fetch()['url'];
+            return $resultat;
         }
-        $resultat = $requete->fetch()['url'];
-        return $resultat;
     }
+
     function isExistFlux(string $url): bool {
         $commandeRequete="SELECT url FROM flux WHERE url=$url";
         $requete=$this->db->prepare($commandeRequete);
         if($requete){
             $requete->execute();
+            $resultat=$requete->fetchAll();
+            $requete->closeCursor();
+            return count($resultat) > 0;
         }
-        $resultat=$requete->fetchAll();
-        $requete->closeCursor();
-        return count($resultat) > 0;
+        return false;
     }
+
     function addFlux(Flux $flux){
         if($this->isExistFlux($flux->getUrl())){
             return;
@@ -60,9 +62,10 @@ class FluxDAO
         $requete= $this->db->prepare($commandeRequete);
         if($requete){
             $requete->execute();
+            $requete->closeCursor();
         }
-        $requete->closeCursor();
     }
+
     function removeFlux(Flux $flux){
         if($this->isExistFlux($flux->getUrl())){
             $urlAdelete= $flux->getUrl();

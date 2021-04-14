@@ -25,27 +25,30 @@ class NouvellesDAO
         $requete = $this->db->prepare($commandeRequete);
         if($requete) {
             $requete->execute();
+            $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"Nouvelle");
+            return $resultat[0];
         }
-        $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"Nouvelle");
-        return $resultat[0];
     }
-    function getNouvelles(): Nouvelle{
+
+    function getNouvelles(): Nouvelle {
         $commandeRequete="SELECT * FROM nouvelles";
         $requete=$this->db->prepare($commandeRequete);
         if ($requete){
             $requete->execute();
+            $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"Nouvelle");
+            return $resultat;
         }
-        $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"Nouvelle");
-        return $resultat;
     }
-    function getNouvellesParFlux(string $flux): Nouvelle{
+
+    function getNouvellesParFlux(string $flux): Nouvelle {
         $commandeRequete="SELECT * FROM nouvelles WHERE flux=$flux";
         $requete=$this->db->prepare($commandeRequete);
         if ($requete){
             $requete->execute();
+            $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Nouvelle");
+            return $resultat;
         }
-        $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Nouvelle");
-        return $resultat;
+
     }
 
     function getNombreNouvelles(): int {
@@ -53,10 +56,11 @@ class NouvellesDAO
         $requete= $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
+            $resultat= $requete->fetch()['id'];
+            return $resultat;
         }
-        $resultat= $requete->fetch()['id'];
-        return $resultat;
     }
+
     function isExistNouvelle(string $titre,string $description): bool{
         $titre= $this->db->quote($titre);
         $description=$this->db->quote($description);
@@ -64,11 +68,12 @@ class NouvellesDAO
         $requete= $this->db->prepare($commandeRequete);
         if($requete){
             $requete->execute();
+            $resultat=$requete->fetchAll();
+            $requete->closeCursor();
+            return count($resultat) >0;
         }
-        $resultat=$requete->fetchAll();
-        $requete->closeCursor();
-        return count($resultat) >0;
     }
+
     function addNouvelle(Nouvelle $nouvelle){
         if ($this->isExistNouvelle($nouvelle->getTitre(), $nouvelle->getDescription())){
             return;
@@ -87,9 +92,10 @@ class NouvellesDAO
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
+            $requete->closeCursor();
         }
-        $requete->closeCursor();
     }
+
     function removeNouvelle(Nouvelle $nouvelle){
         if ($this->isExistNouvelle($nouvelle->getTitre(), $nouvelle->getDescription())){
             $idAdelete= $nouvelle->getId();
@@ -97,9 +103,8 @@ class NouvellesDAO
             $requete= $this->db->prepare($commandeRequete);
             if($requete){
                 $requete->execute();
+                $requete->closeCursor();
             }
-            $requete->closeCursor();
-
         }
     }
 

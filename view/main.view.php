@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <title>Main page</title>
 <link rel="stylesheet" href="../view/design/main.css">
 <script>
@@ -41,13 +45,12 @@
       <?php
         $flux_utilisateurDAO = new Flux_utilisateurDAO();
         $fluxs_utilisateur = $flux_utilisateurDAO->getFlux_utilisateurByLogin($_SESSION['login']);
-        var_dump($fluxs_utilisateur);
         foreach ($fluxs_utilisateur as $flux_utilisateur) { ?>
             <li><form action="../controler/supprimer_flux_utilisateur.ctrl.php" method="post">
                     <input type="hidden" id="url" value="<?= $flux_utilisateur->getNom() ?>">
                     <input class="supprimer" type="submit" value="&times;">
                 </form>
-                <a href="#" onclick="closeNav(), openWorld(), closeTech()">World News</a>
+                <a href="#" onclick="closeNav(), openWorld(), closeTech()"><?= $flux_utilisateur->getNom() ?></a>
             </li>
         <?php } ?>
   </ul>
