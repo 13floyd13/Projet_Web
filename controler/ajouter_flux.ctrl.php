@@ -25,6 +25,8 @@ if (!isset($i_nom_flux) || (isset($i_nom_flux) && empty($i_nom_flux))) {
 var_dump($i_nom_flux);
 var_dump($login);
 
+
+
 // ce flux n'est pas dans flux_utilisateur
 if ($fluxUtilisateur_db->isExistFlux_utilisateur($login, $i_nom_flux)) {
     // message d'erreur : "Ce nom est déjà dans votre liste"
@@ -32,7 +34,6 @@ if ($fluxUtilisateur_db->isExistFlux_utilisateur($login, $i_nom_flux)) {
 
 try {
     $fluxUtilisateur_db->getNomFlux_utilisateur($i_url, $login);
-
 } catch (TypeError $t) {
     $fluxUtilisateur = new Flux_utilisateur($i_url, $login, $i_nom_flux, "");
     $fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur);

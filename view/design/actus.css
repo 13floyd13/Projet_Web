@@ -1,0 +1,5 @@
+div #actus {
+  display: flex;
+  flex-direction: row;
+  background-color: #181A1B;
+}

@@ -22,7 +22,7 @@ for ($i=0; $i < strlen($mdp); $i++) {
   <body>
 
     <header>
-      <a class="return" href="../view/main.view.php">&#8592;</a>
+      <a class="return" href="nav.view.php">&#8592;</a>
     </header>
 
     <div id="container">
