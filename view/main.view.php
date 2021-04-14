@@ -35,7 +35,7 @@
 
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <p>Bonjour userLogin</p>
+      <p>Bonjour <?= $_SESSION['login'] ?></p>
         <?php
         require ("../controler/ajouter_flux.ctrl.php");
         ?>

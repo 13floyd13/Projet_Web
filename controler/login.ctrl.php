@@ -1,9 +1,10 @@
 <?php
 require('../model/utilisateurDAO_class.php');
-//start_session();
+
 
 if (isset($_POST['lg'])) {
   $login = $_POST['lg'];
+  $_SESSION['login'] = $login;
 } else {
   $login = "";
 }
@@ -21,7 +22,6 @@ if ($login === "" || $mdp === "" || !$dao->isExistUtilisateur($login)) {
   if (strcmp($mdp, $dao->getUtilisateur($login)->getMp())==0) {
     require('../view/main.view.php');
   } else {
-    // $_SESSION['']
     require('../view/login.view.html');
   }
 }

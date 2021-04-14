@@ -12,7 +12,7 @@ private string $image;
 private string $flux;
 
 //constructeurs
-public function __construct(int $id,string $date, string $titre, string $description, string $lien, string $image, string $flux)
+public function __construct(int $id = 1, string $date = "", string $titre = "", string $description = "", string $lien = "", string $image = "", string $flux = "")
 {
     $this->id=$id;
     $this->date=$date;

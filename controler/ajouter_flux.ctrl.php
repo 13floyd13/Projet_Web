@@ -5,6 +5,10 @@ require_once("../view/ajouter_flux.view.php");
 
 // $login = $_SESSION['login'];
 $login = "admin";   // ********* À ENLEVER
+
+if (!isset($_POST['i_url']) || !isset($_POST['i_nom_flux'])) {
+    return ;
+}
 $i_url = $_POST['i_url'];
 $i_nom_flux = $_POST['i_nom_flux'];
 $flux_db = new FluxDAO();
