@@ -24,6 +24,14 @@ class Utilisateur
     }
 
     /**
+     * @param string $lg
+     */
+    public function setLogin(string $lg): void
+    {
+        $this->login = $lg;
+    }
+
+    /**
      * @return string
      */
     public function getMp(): string

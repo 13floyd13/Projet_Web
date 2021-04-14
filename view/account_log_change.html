@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Change login page</title>
+    <link rel="stylesheet" href="../view/design/log_change.css">
+  </head>
+  <body>
+
+    <header>
+      <a class="return" href="../view/account.view.php">&#8592;</a>
+    </header>
+
+    <div id="container">
+      <form action="../controler/modifier_login.ctrl.php" method="post">
+        <div>
+          <label for="old_id">Entrez votre ancien identifiant</label>
+          <input id="old_id" type="text" name="oi">
+          <br>
+          <label for="new_id">Entrez votre nouvel identifiant</label>
+          <input id="new_id" type="text" name="ni">
+          <br>
+          <input type="submit" value="Validez">
+        </div>
+      </form>
+    </div>
+
+  </body>
+</html>
