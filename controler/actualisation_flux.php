@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once("../model/flux_utilisateurDAO_class.php");
-require_once("../model/nouvellesDAO_class.php");
+    require_once("../model/nouvellesDAO_class.php");
 
     $login = $_SESSION['login'];
     $flux_utilisateur_db = new Flux_utilisateurDAO();
