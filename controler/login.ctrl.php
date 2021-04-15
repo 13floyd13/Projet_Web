@@ -10,7 +10,7 @@ if (isset($_POST['lg'])) {
 }
 
 if (isset($_POST['mdp'])) {
-  $mdp = $_POST['mdp'];
+  $mdp = password_hash($_POST['mdp'],PASSWORD_DEFAULT,['cost' =>14]);
 } else {
   $mdp = "";
 }
@@ -19,7 +19,7 @@ $dao = new UtilisateurDAO;
 if ($login === "" || $mdp === "" || !$dao->isExistUtilisateur($login)) {
   require('../view/login.view.html');
 } else {
-  if (strcmp($mdp, $dao->getUtilisateur($login)->getMp())==0) {
+  if (password_verify($_POST['mdp'],$mdp)) { //(strcmp($mdp, $dao->getUtilisateur($login)->getMp())==0)
     $_SESSION['login'] = $login;
     require("../controler/actualisation_flux.php");
     require('../controler/actus.ctrl.php');
