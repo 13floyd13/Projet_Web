@@ -86,4 +86,18 @@ class UtilisateurDAO
             $requete2->closeCursor();
         }
     }
+
+    function updateUtilisateur(Utilisateur $utilisateur, string $new_mp){
+      try {
+        $login = $utilisateur->getLogin();
+        $commandeRequete = "UPDATE utilisateurs SET mp = '$new_mp' WHERE login = '$login'";
+        $requete=$this->db->prepare($commandeRequete);
+        if ($requete) {
+          $requete->execute();
+        }
+        $requete->closeCursor();
+      } catch (PDOException $e) {
+          echo 'ERROR UPDATING CONTENT : '.$e->getMessage();
+      }
+    }
 }
