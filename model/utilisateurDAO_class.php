@@ -44,13 +44,15 @@ class UtilisateurDAO
 
     function isExistUtilisateur(string $login): bool
     {
-        //$login = $this->db->quote($login);
-        $commandeRequete = "SELECT * FROM utilisateurs WHERE login= :login";
-        $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam(':login',$login,PDO::PARAM_STR);
+        $requete = $this->db->prepare('SELECT * FROM utilisateurs WHERE login= :login');
+
         if ($requete) {
+            //$login = $this->db->quote($login);
+            $requete->BindParam(':login',$login);
             $requete->execute();
             $resultat = $requete->fetchAll();
+            print_r($resultat);
+            print_r(count($resultat));
             $requete->closeCursor();
             return count($resultat) > 0;
         }
@@ -106,4 +108,6 @@ class UtilisateurDAO
           echo 'ERROR UPDATING CONTENT : '.$e->getMessage();
       }
     }
+
+
 }
