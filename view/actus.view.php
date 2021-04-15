@@ -5,7 +5,11 @@
     <title>Main page</title>
     <?php
     require_once("../controler/supprimer_flux_utilisateur.ctrl.php");
-    include("../view/nav.view.php");
-    include("../controler/selection_nouvelles.ctrl.php");
+    if (isset($_GET['account']) && $_GET['account'] === "page") {
+        require_once ("../controler/account.ctrl.php");
+    } else {
+        include("../view/nav.view.php");
+        include("../controler/selection_nouvelles.ctrl.php");
+    }
     ?>
 </div>
