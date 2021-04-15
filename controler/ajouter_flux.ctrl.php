@@ -17,10 +17,6 @@ $i_nom_flux = $_POST['i_nom_flux'];
 $flux_db = new FluxDAO();
 $fluxUtilisateur_db = new Flux_utilisateurDAO();
 
-if (!isset($i_url)) {
-    return ;
-}
-
 if (!isset($i_nom_flux) || (isset($i_nom_flux) && empty($i_nom_flux))) {
     $i_nom_flux = (string) simplexml_load_file($i_url)->channel->title;
 }
@@ -28,17 +24,21 @@ if (!isset($i_nom_flux) || (isset($i_nom_flux) && empty($i_nom_flux))) {
 // ce flux n'est pas dans flux_utilisateur
 if ($fluxUtilisateur_db->isExistFlux_utilisateur($login, $i_nom_flux)) {
     // message d'erreur : "Ce nom est déjà dans votre liste"
-    require_once("../controler/actus.ctrl.php?erreur_nom_flux=true");
+    $erreur_nom_flux = true;
+    require_once("../controler/actus.ctrl.php");
 }
 
 $fluxUtilisateur = new Flux_utilisateur($i_url, $login, $i_nom_flux, "");
 if ($fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur) == false) {
     // message d'erreur : "Ce flux est déjà dans votre liste"
-    require_once("../controler/actus.ctrl.php?erreur_url_flux=true");
+    $erreur_url_flux = true;
+    require_once("../controler/actus.ctrl.php");
 }
 
 $flux = new Flux($i_url);
 $flux_db->addFlux($flux);
-
-
+print "ok";
 require_once ("actualisation_flux.php");
+require_once("../controler/actus.ctrl.php");
+
+
