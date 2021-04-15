@@ -31,6 +31,16 @@ class UtilisateurDAO
         }
     }
 
+    function getUtilisateurs(): array {
+        $commandeRequete="SELECT * FROM utilisateurs";
+        $requete=$this->db->prepare($commandeRequete);
+        if ($requete){
+            $requete->execute();
+            $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"Utilisateur");
+            return $resultat;
+        }
+    }
+
     function getNombreUtilisateurs()
     {
         $commandeRequete = "SELECT COUNT(Distinct login) FROM utilisateurs";
