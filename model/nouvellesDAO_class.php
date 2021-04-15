@@ -20,8 +20,10 @@ class NouvellesDAO
     function getNouvelle(string $titre,string $description): Nouvelle{
         $titre= $this->db->quote($titre);
         $description=$this->db->quote($description);
-        $commandeRequete="SELECT * FROM nouvelles WHERE titre=$titre AND description=$description";
+        $commandeRequete="SELECT * FROM nouvelles WHERE titre= :titre AND description= :description";
         $requete = $this->db->prepare($commandeRequete);
+        $requete->bindParam('titre',$titre,PDO::PARAM_STR );
+        $requete->bindParam('description',$description,PDO::PARAM_STR);
         if($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE,"Nouvelle");
@@ -30,7 +32,7 @@ class NouvellesDAO
     }
 
     function getNouvelles(): array {
-        $commandeRequete="SELECT * FROM nouvelles";
+        $commandeRequete="SELECT * FROM nouvelles ORDER BY date ";
         $requete=$this->db->prepare($commandeRequete);
         if ($requete){
             $requete->execute();
@@ -40,8 +42,9 @@ class NouvellesDAO
     }
 
     function getNouvellesParFlux(string $flux): array {
-        $commandeRequete="SELECT * FROM nouvelles WHERE flux=\"$flux\"";
+        $commandeRequete="SELECT * FROM nouvelles WHERE flux= :flux ORDER BY date";
         $requete=$this->db->prepare($commandeRequete);
+        $requete->bindParam('flux',$flux,PDO::PARAM_STR);
         if ($requete){
             $requete->execute();
             $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Nouvelle");
@@ -62,8 +65,10 @@ class NouvellesDAO
     function isExistNouvelle(string $titre,string $description): bool {
         $titre= $this->db->quote($titre);
         $description=$this->db->quote($description);
-        $commandeRequete= "SELECT id FROM nouvelles WHERE description = $description AND titre = $titre";
+        $commandeRequete= "SELECT id FROM nouvelles WHERE description = :description AND titre = :titre";
         $requete= $this->db->prepare($commandeRequete);
+        $requete->bindParam('titre',$titre,PDO::PARAM_STR );
+        $requete->bindParam('description',$description,PDO::PARAM_STR);
         if($requete){
             $requete->execute();
             $resultat=$requete->fetchAll();
