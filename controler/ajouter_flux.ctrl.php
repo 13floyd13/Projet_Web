@@ -1,7 +1,7 @@
 <?php
 require_once("../model/fluxDAO_class.php");
 require_once("../model/flux_utilisateurDAO_class.php");
-require_once("../controler/actus.ctrl.php");
+require_once("../view/ajouter_flux.view.php");
 
 session_start();
 

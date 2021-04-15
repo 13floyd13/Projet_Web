@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="../view/design/nouvelle.css">
 <article class="nouvelle">
     <img src="<?= $nouvelle->getImage() ?>" alt="image article">
     <h3><?= $nouvelle->getTitre() ?></h3>

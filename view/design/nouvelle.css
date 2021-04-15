@@ -1,5 +1,21 @@
 .nouvelle {
     background-color: #222c35;
-    width: 75%;
+    width: 50%;
+    border-radius: 5px;
+    color: #B1AAA0;
+    padding: 1em;
+    margin: 1em;
+}
 
+.nouvelle > img{
+    float: right;
+    width: 20%;
+    height: auto;
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+}
+
+.nouvelle > a {
+    text-decoration: none;
+    color: inherit;
 }

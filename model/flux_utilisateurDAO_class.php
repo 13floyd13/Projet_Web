@@ -95,11 +95,10 @@ class Flux_utilisateurDAO
         }
     }
 
-    function removeFlux_utilisateur(Flux_utilisateur $flux_utilisateur)
+    function removeFlux_utilisateur(Flux_utilisateur $flux_utilisateur, string $login)
     {
-        if ($this->isExistFlux_utilisateur()) {
-            $fluxAdelete = $flux_utilisateur->getFlux();
-            $commandeRequete = "DELETE FROM flux WHERE flux=$flux_utilisateur";
+        if ($this->isExistFlux_utilisateur($login, $flux_utilisateur->getFlux())) {
+            $commandeRequete = "DELETE FROM flux WHERE flux=\"$flux_utilisateur->getFlux()\" AND login=\"$login\"";
             $requete = $this->db->prepare($commandeRequete);
             if ($requete) {
                 $requete->execute();
