@@ -20,21 +20,9 @@ body{
   color: #B1AAA0;
 }
 
-form{
-  margin-bottom: 10%;
-}
-
-.modif{
+.supprimer{
   float: right;
-  background-color: inherit;
-  border: none;
-  cursor: pointer;
-  font-size: 0.8em;
-  color: #1ABBFF;
-}
-
-#group{
-  float: right;
-  font-size: 3em;
-  text-decoration:none;
+  text-decoration: none;
+  color: inherit;
+  font-size: 2em;
 }
