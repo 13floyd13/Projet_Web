@@ -1,7 +1,9 @@
 <?php
 //dans la nav, mettre un titre catégorie avec un bouton à coté pour ajouter une catégorie (+)
 //insérer un formulaire dans ce nav pour récupérer un nom de catégorie.
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 require_once ("../model/flux_utilisateurDAO_class.php");
 require_once ("../model/flux_utilisateur_class.php");
 $categorie=$_POST['categorie'];
