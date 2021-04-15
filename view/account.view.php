@@ -1,7 +1,5 @@
 <?php
-if(!isset($_SESSION)){
-    session_start();
-}
+session_start();
 require_once('../model/utilisateurDAO_class.php');
 
 $dao = new UtilisateurDAO;

@@ -1,8 +1,6 @@
 <?php
 // on récupère la catégorie à supprimer
-if(!isset($_SESSION)){
-    session_start();
-}
+session_start();
 require ('ajouter_flux_à_categorie.php');
 require_once ("../model/flux_utilisateurDAO_class.php");
 // on récup tous les flux de la catégories et soit on les met dans une catégorie par défaut soit on supprime les flux

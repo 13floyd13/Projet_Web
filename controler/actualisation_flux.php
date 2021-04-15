@@ -1,7 +1,5 @@
 <?php
-    if(!isset($_SESSION)){
     session_start();
-}
     require_once("../model/flux_utilisateurDAO_class.php");
     require_once("../model/nouvellesDAO_class.php");
 
