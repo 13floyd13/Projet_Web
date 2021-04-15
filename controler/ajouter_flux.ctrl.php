@@ -29,19 +29,13 @@ if ($fluxUtilisateur_db->isExistFlux_utilisateur($login, $i_nom_flux)) {
     // message d'erreur : "Ce nom est déjà dans votre liste"
 }
 
-try {
-    $fluxUtilisateur_db->getNomFlux_utilisateur($i_url, $login);
-} catch (TypeError $t) {
-    $fluxUtilisateur = new Flux_utilisateur($i_url, $login, $i_nom_flux, "");
-    $fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur);
+$fluxUtilisateur = new Flux_utilisateur($i_url, $login, $i_nom_flux, "");
+if ($fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur) == false) {
+    // message d'erreur : "Ce flux est déjà dans votre liste"
 }
 
-try {
-    $flux_db->getFlux($i_url);
-    // plante si existe déjà dans la liste des flux
-} catch (TypeError $t) {
-    $flux = new Flux($i_url);
-    $flux_db->addFlux($flux);
-}
+$flux = new Flux($i_url);
+$flux_db->addFlux($flux);
+
 
 require_once ("actualisation_flux.php");

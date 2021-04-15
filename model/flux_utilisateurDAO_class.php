@@ -86,10 +86,10 @@ class Flux_utilisateurDAO
         return false;
     }
 
-    function addFlux_utilisateur(Flux_utilisateur $flux_utilisateur)
+    function addFlux_utilisateur(Flux_utilisateur $flux_utilisateur) : bool
     {
         if ($this->isExistFlux_utilisateur($flux_utilisateur->getLogin(), $flux_utilisateur->getFlux())) {
-            return;
+            return false;
         }
         //$login = $this->db->quote($flux_utilisateur->getLogin());
         //$nom = $this->db->quote($flux_utilisateur->getNom());
@@ -98,14 +98,16 @@ class Flux_utilisateurDAO
         //$commandeRequete = 'INSERT INTO flux_utilisateur(flux, login, nom, categorie) VALUES(\'' . $flux_utilisateur->getFlux() . '\', ' . $login . ', ' . $nom . ', ' . $categorie . ')';
         $commandeRequete= 'INSERT INTO flux_utilisateur(flux, login, nom, categorie) VALUES( :flux , :login, :nom, :categorie)';
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam(':flux',$flux,PDO::PARAM_STR );
-        $requete->bindParam(':login',$login,PDO::PARAM_STR);
-        $requete->bindParam(':nom',$nom,PDO::PARAM_STR);
-        $requete->bindParam(':categorie',$categorie,PDO::PARAM_STR);
         if ($requete) {
+            $requete->bindParam(':flux',$flux,PDO::PARAM_STR );
+            $requete->bindParam(':login',$login,PDO::PARAM_STR);
+            $requete->bindParam(':nom',$nom,PDO::PARAM_STR);
+            $requete->bindParam(':categorie',$categorie,PDO::PARAM_STR);
             $requete->execute();
             $requete->closeCursor();
+            return true;
         }
+        return false;
     }
 
     function removeFlux_utilisateur(Flux_utilisateur $flux_utilisateur)
