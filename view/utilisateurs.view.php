@@ -22,7 +22,7 @@ $dao = new UtilisateurDAO;
         $utilisateurs = $dao->getUtilisateurs();
         foreach ($utilisateurs as $value) {
           $login = $value->getLogin();
-          echo '<article><a href="#">&times;</a><h1>'.$login.'<h1></article>';
+          echo '<article><a class="supprimer" href="#">&times;</a><h1>'.$login.'<h1></article><hr>';
         }
       ?>
     </div>
