@@ -17,7 +17,7 @@ class Flux_utilisateurDAO
         }
     }
 
-    function getNomFlux_utilisateur(string $flux,string $login): Flux_utilisateur
+    function getNomFlux_utilisateur(string $flux, string $login): Flux_utilisateur
     {
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM flux_utilisateur WHERE flux=$flux AND login=$login";
@@ -29,7 +29,7 @@ class Flux_utilisateurDAO
         }
     }
 
-    function getFlux_utilisateur(string $nom,string $login): Flux_utilisateur
+    function getFlux_utilisateur(string $nom, string $login): Flux_utilisateur
     {
         $login = $this->db->quote($login);
         $nom = $this->db->quote($nom);
@@ -65,7 +65,7 @@ class Flux_utilisateurDAO
         }
     }
 
-    function isExistFlux_utilisateur(string $login,string $flux): bool
+    function isExistFlux_utilisateur(string $login, string $flux): bool
     {
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM nouvelles WHERE flux=$flux AND login=$login";
@@ -79,8 +79,9 @@ class Flux_utilisateurDAO
         return false;
     }
 
-    function addFlux_utilisateur(Flux_utilisateur $flux_utilisateur){
-        if($this->isExistFlux_utilisateur($flux_utilisateur->getLogin(),$flux_utilisateur->getFlux())){
+    function addFlux_utilisateur(Flux_utilisateur $flux_utilisateur)
+    {
+        if ($this->isExistFlux_utilisateur($flux_utilisateur->getLogin(), $flux_utilisateur->getFlux())) {
             return;
         }
         $login = $this->db->quote($flux_utilisateur->getLogin());
@@ -94,18 +95,21 @@ class Flux_utilisateurDAO
         }
     }
 
-    function removeFlux_utilisateur(Flux_utilisateur $flux_utilisateur){
-        if($this->isExistFlux_utilisateur()){
-            $fluxAdelete= $flux_utilisateur->getFlux();
-            $commandeRequete="DELETE FROM flux WHERE flux=$flux_utilisateur";
-            $requete= $this->db->prepare($commandeRequete);
-            if($requete){
+    function removeFlux_utilisateur(Flux_utilisateur $flux_utilisateur)
+    {
+        if ($this->isExistFlux_utilisateur()) {
+            $fluxAdelete = $flux_utilisateur->getFlux();
+            $commandeRequete = "DELETE FROM flux WHERE flux=$flux_utilisateur";
+            $requete = $this->db->prepare($commandeRequete);
+            if ($requete) {
                 $requete->execute();
                 $requete->closeCursor();
             }
         }
     }
-    function getCategories($login): array {
+
+    function getCategories($login): array
+    {
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT DISTINCT categorie FROM flux_utilisateur WHERE login=$login ORDER BY categorie";
         $requete = $this->db->prepare($commandeRequete);
@@ -113,6 +117,6 @@ class Flux_utilisateurDAO
             $requete->execute();
             $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
             return $resultat;
+        }
     }
-
 }
