@@ -30,7 +30,7 @@ class NouvellesDAO
     }
 
     function getNouvelles(): array {
-        $commandeRequete="SELECT * FROM nouvelles";
+        $commandeRequete="SELECT * FROM nouvelles ORDER BY date DESC";
         $requete=$this->db->prepare($commandeRequete);
         if ($requete){
             $requete->execute();
@@ -40,11 +40,11 @@ class NouvellesDAO
     }
 
     function getNouvellesParFlux(string $flux): array {
-        $commandeRequete="SELECT * FROM nouvelles WHERE flux=\"$flux\"";
+        $commandeRequete="SELECT * FROM nouvelles WHERE flux=\"$flux\" ORDER BY date DESC";
         $requete=$this->db->prepare($commandeRequete);
         if ($requete){
             $requete->execute();
-            $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Nouvelle");
+            $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Nouvelle");
             return $resultat;
         }
     }
@@ -72,28 +72,6 @@ class NouvellesDAO
         }
         return false;
     }
-
-    /*function addNouvelle(SimpleXMLElement $nouvelle, Flux $flux){
-        if ($this->isExistNouvelle($nouvelle->title, $nouvelle->description)){
-            return;
-        }
-        $url_image = $this->getURLImage($nouvelle);
-        $img = "";
-        if ($url_image != "")
-            $img = '../data/images/image' . $this->getNombreNouvelles() . '.' . $this->extensionImage($url_image);
-
-        $titre = $this->db->quote($nouvelle->title);
-        $description = $this->db->quote($nouvelle->description);
-        $pubDate = strftime("%Y-%m-%d %H:%M:%S", strtotime($nouvelle->pubDate));
-        $flux = $this->db->quote($flux->getUrl());
-
-        $commandeRequete = 'INSERT INTO nouvelles(date, titre, description, lien, image, flux) VALUES(\'' . $pubDate . '\', ' . $titre . ', ' . $description . ', \'' . $nouvelle->link . '\', \'' . $img . '\', ' . $flux . ')';
-        $requete = $this->db->prepare($commandeRequete);
-        if ($requete) {
-            $requete->execute();
-            $requete->closeCursor();
-        }
-    }*/
 
     function addNouvelle(Nouvelle $nouvelle){
         if ($this->isExistNouvelle($nouvelle->getTitre(), $nouvelle->getDescription())){

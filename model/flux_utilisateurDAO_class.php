@@ -20,7 +20,7 @@ class Flux_utilisateurDAO
     function getNomFlux_utilisateur(string $flux, string $login): Flux_utilisateur
     {
         $login = $this->db->quote($login);
-        $commandeRequete = "SELECT * FROM flux_utilisateur WHERE flux=$flux AND login=$login";
+        $commandeRequete = "SELECT * FROM flux_utilisateur WHERE flux=\"$flux\" AND login=$login";
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
