@@ -18,8 +18,8 @@ class NouvellesDAO
     }
 
     function getNouvelle(string $titre,string $description): Nouvelle{
-        $titre= $this->db->quote($titre);
-        $description=$this->db->quote($description);
+        //$titre= $this->db->quote($titre);
+        //$description=$this->db->quote($description);
         $commandeRequete="SELECT * FROM nouvelles WHERE titre= :titre AND description= :description";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':titre',$titre,PDO::PARAM_STR );
@@ -32,7 +32,7 @@ class NouvellesDAO
     }
 
     function getNouvelles(): array {
-        $commandeRequete="SELECT * FROM nouvelles ORDER BY date ";
+        $commandeRequete="SELECT * FROM nouvelles ORDER BY date desc";
         $requete=$this->db->prepare($commandeRequete);
         if ($requete){
             $requete->execute();
@@ -42,7 +42,7 @@ class NouvellesDAO
     }
 
     function getNouvellesParFlux(string $flux): array {
-        $commandeRequete="SELECT * FROM nouvelles WHERE flux= :flux ORDER BY date";
+        $commandeRequete="SELECT * FROM nouvelles WHERE flux= :flux ORDER BY date desc ";
         $requete=$this->db->prepare($commandeRequete);
         $requete->bindParam(':flux',$flux,PDO::PARAM_STR);
         if ($requete){
@@ -63,8 +63,8 @@ class NouvellesDAO
     }
 
     function isExistNouvelle(string $titre,string $description): bool {
-        $titre= $this->db->quote($titre);
-        $description=$this->db->quote($description);
+        //$titre= $this->db->quote($titre);
+        //$description=$this->db->quote($description);
         $commandeRequete= "SELECT id FROM nouvelles WHERE description = :description AND titre = :titre";
         $requete= $this->db->prepare($commandeRequete);
         $requete->bindParam(':titre',$titre,PDO::PARAM_STR );
