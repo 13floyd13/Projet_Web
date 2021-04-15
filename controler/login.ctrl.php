@@ -21,9 +21,8 @@ if ($login === "" || $mdp === "" || !$dao->isExistUtilisateur($login)) {
 } else {
   if (password_verify($dao->getUtilisateur($login)->getMp(),$mdp)) { //(strcmp($mdp, $dao->getUtilisateur($login)->getMp())==0)
     $_SESSION['login'] = $login;
-    require('../view/account.view.php');
-    //require("../controler/actualisation_flux.php");
-    //require('../controler/actus.ctrl.php');
+    require("../controler/actualisation_flux.php");
+    require('../controler/actus.ctrl.php');
   } else {
     require('../view/login.view.html');
   }

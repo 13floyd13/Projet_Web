@@ -113,8 +113,20 @@ class Flux_utilisateurDAO
         if ($this->isExistFlux_utilisateur()) {
             $fluxAdelete = $flux_utilisateur->getFlux();
             $commandeRequete = "DELETE  FROM flux WHERE flux= :fluxAdelete";
-            $requete->bindParam('fluxAdelete',$fluxAdelete,PDO::PARAM_STR);
             $requete = $this->db->prepare($commandeRequete);
+            $requete->bindParam('fluxAdelete',$fluxAdelete,PDO::PARAM_STR);
+            if ($requete) {
+                $requete->execute();
+                $requete->closeCursor();
+            }
+        }
+    }
+    function removeFlux_utilisateurByFlux($flux,$login){
+        if ($this->isExistFlux_utilisateur()) {
+            $commandeRequete = "DELETE  FROM flux WHERE flux= :flux AND login= :login";
+            $requete = $this->db->prepare($commandeRequete);
+            $requete->bindParam('flux',$flux,PDO::PARAM_STR );
+            $requete->bindParam('login',$login,PDO::PARAM_STR);
             if ($requete) {
                 $requete->execute();
                 $requete->closeCursor();
