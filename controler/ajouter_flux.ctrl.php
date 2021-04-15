@@ -1,13 +1,14 @@
 <?php
 require_once("../model/fluxDAO_class.php");
 require_once("../model/flux_utilisateurDAO_class.php");
-require_once("../view/ajouter_flux.view.php");
+
 
 session_start();
 
 $login = $_SESSION['login'];
 
 if (!isset($_POST['i_url'])) {
+    require_once("../view/ajouter_flux.view.php");
     return ;
 }
 

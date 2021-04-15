@@ -26,3 +26,8 @@ table{
   width: 50%;
   margin: 10px;
 }
+
+.erreur {
+  text-align: center;
+  color: red;
+}
