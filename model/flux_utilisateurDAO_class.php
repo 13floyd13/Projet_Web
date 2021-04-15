@@ -133,6 +133,18 @@ class Flux_utilisateurDAO
             }
         }
     }
+    function removeFlux_utilisateurByFlux($flux,$login){
+        if ($this->isExistFlux_utilisateur()) {
+            $commandeRequete = "DELETE  FROM flux WHERE flux= :flux AND login= :login";
+            $requete = $this->db->prepare($commandeRequete);
+            $requete->bindParam('flux',$flux,PDO::PARAM_STR );
+            $requete->bindParam('login',$login,PDO::PARAM_STR);
+            if ($requete) {
+                $requete->execute();
+                $requete->closeCursor();
+            }
+        }
+    }
 
     function getCategories($login): array
     {
