@@ -44,7 +44,7 @@ class UtilisateurDAO
 
     function isExistUtilisateur(string $login): bool
     {
-        $login = $this->db->quote($login);
+        //$login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM utilisateurs WHERE login= :login";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':login',$login,PDO::PARAM_STR);

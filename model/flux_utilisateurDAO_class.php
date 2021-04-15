@@ -19,7 +19,7 @@ class Flux_utilisateurDAO
 
     function getNomFlux_utilisateur(string $flux, string $login): Flux_utilisateur
     {
-        $login = $this->db->quote($login);
+        //$login = $this->db->quote($login);
         $commandeRequete = "SELECT nom FROM flux_utilisateur WHERE flux= :flux AND login=:login";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':flux',$flux,PDO::PARAM_STR );
@@ -33,8 +33,8 @@ class Flux_utilisateurDAO
 
     function getFlux_utilisateur(string $nom, string $login): Flux_utilisateur
     {
-        $login = $this->db->quote($login);
-        $nom = $this->db->quote($nom);
+        //$login = $this->db->quote($login);
+        //$nom = $this->db->quote($nom);
         $commandeRequete = "SELECT * FROM flux_utilisateur WHERE nom= :nom AND login= :login";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':nom',$nom,PDO::PARAM_STR );
@@ -48,7 +48,7 @@ class Flux_utilisateurDAO
 
     function getFlux_utilisateurByLogin(string $login): array
     {
-        $login = $this->db->quote($login);
+        //$login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM flux_utilisateur WHERE login= :login";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':login',$login,PDO::PARAM_STR);
@@ -72,7 +72,7 @@ class Flux_utilisateurDAO
 
     function isExistFlux_utilisateur(string $login, string $flux): bool
     {
-        $login = $this->db->quote($login);
+        //$login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM nouvelles WHERE flux= :flux AND login= :login";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':flux',$flux,PDO::PARAM_STR );
@@ -91,8 +91,8 @@ class Flux_utilisateurDAO
         if ($this->isExistFlux_utilisateur($flux_utilisateur->getLogin(), $flux_utilisateur->getFlux())) {
             return;
         }
-        $login = $this->db->quote($flux_utilisateur->getLogin());
-        $nom = $this->db->quote($flux_utilisateur->getNom());
+        //$login = $this->db->quote($flux_utilisateur->getLogin());
+        //$nom = $this->db->quote($flux_utilisateur->getNom());
         $categorie = $this->db->quote($flux_utilisateur->getCategorie());
         $flux= $flux_utilisateur->getFlux();
         //$commandeRequete = 'INSERT INTO flux_utilisateur(flux, login, nom, categorie) VALUES(\'' . $flux_utilisateur->getFlux() . '\', ' . $login . ', ' . $nom . ', ' . $categorie . ')';
@@ -136,7 +136,7 @@ class Flux_utilisateurDAO
 
     function getCategories($login): array
     {
-        $login = $this->db->quote($login);
+        //$login = $this->db->quote($login);
         $commandeRequete = "SELECT DISTINCT categorie FROM flux_utilisateur WHERE login= :login ORDER BY categorie";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':login',$login,PDO::PARAM_STR);
@@ -147,7 +147,7 @@ class Flux_utilisateurDAO
         }
     }
     function getFlux_utilisateurByCategories($login,$categorie): array {
-        $login = $this->db->quote($login);
+        //$login = $this->db->quote($login);
         $commandeRequete = "SELECT DISTINCT flux FROM flux_utilisateur WHERE login= :login AND categorie= :categorie";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':login',$login,PDO::PARAM_STR);
