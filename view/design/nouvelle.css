@@ -1,5 +1,50 @@
 .nouvelle {
     background-color: #222c35;
-    width: 75%;
+    width: 60%;
+    border-radius: 5px;
+    color: #EEEEEE;
+    padding: 1em;
+    margin: 1em;
+    border: 1px solid #222c35;
+}
 
+.nouvelle:hover {
+    border: 1px solid #AAAAAA;
+}
+
+.nouvelle > img{
+    float: right;
+    width: 20%;
+    height: auto;
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+}
+
+.nouvelle h3 {
+    font-size: larger;
+}
+
+.nouvelle > a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nouvelle > a:last-child {
+    margin-left: 80%;
+    font-size: smaller;
+    font-style: italic;
+}
+
+.nouvelle .description {
+    text-align: justify;
+}
+
+.nouvelle .description a {
+    color: inherit;
+}
+
+.nouvelle .dateAuteur {
+    font-size: small;
+    margin: 0.5em;
+    width: 75%;
 }
