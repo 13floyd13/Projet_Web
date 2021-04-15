@@ -26,7 +26,7 @@ for ($i=0; $i < strlen($mdp); $i++) {
     </header>
 
     <div id="container">
-      <form id="first" action="../controler/modifier_login.ctrl.php" method="post">
+      <form action="../controler/modifier_login.ctrl.php" method="post">
         <article>
           <!--<input class="modif" type="submit" value="(modifier)">-->
           <h1>Votre Identifiant</h1>
@@ -40,6 +40,11 @@ for ($i=0; $i < strlen($mdp); $i++) {
           <p><?= $etoile ?></p>
         </article>
       </form>
+      <?php
+        if ($_SESSION['login']=='admin') {
+          echo "<article><a id='group' href='../controler/afficher_utilisateurs.ctrl.php'>&#128101;</a><h1>Consultez les utilisateurs : <h1>";
+        }
+      ?>
     </div>
 
   </body>
