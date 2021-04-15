@@ -18,8 +18,8 @@ class NouvellesDAO
     }
 
     function getNouvelle(string $titre,string $description): Nouvelle{
-        //$titre= $this->db->quote($titre);
-        //$description=$this->db->quote($description);
+        $titre= $this->db->quote($titre);
+        $description=$this->db->quote($description);
         $commandeRequete="SELECT * FROM nouvelles WHERE titre= :titre AND description= :description";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':titre',$titre,PDO::PARAM_STR );
