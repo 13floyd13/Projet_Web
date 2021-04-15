@@ -12,7 +12,7 @@ session_start();
     </div>
 
     <?php
-    require ("../controler/ajouter_flux.ctrl.php");
+    require("../controler/ajouter_flux.ctrl.php");
 
     if (isset($erreur_nom_flux) && $erreur_nom_flux == true) {
         print "<p class='erreur'>Ce nom est déjà utilisé par un autre flux</p>";

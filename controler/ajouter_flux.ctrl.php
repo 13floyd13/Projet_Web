@@ -37,7 +37,7 @@ if ($fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur) == false) {
 
 $flux = new Flux($i_url);
 $flux_db->addFlux($flux);
-print "ok";
+unset($_POST);
 require_once ("actualisation_flux.php");
 require_once("../controler/actus.ctrl.php");
 
