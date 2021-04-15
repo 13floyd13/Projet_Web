@@ -1,0 +1,32 @@
+.return{
+  text-decoration: none;
+  color: #1ABBFF;
+  padding: 10px;
+  font-size: 3em;
+}
+
+body{
+  background-color: #181A1B;
+  font-family: Arial Black, sans-serif;
+}
+
+#container{
+  width: 25%;
+  margin: auto;
+  margin-top: 10%;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #384454;
+  color: #B1AAA0;
+  text-align: center;
+}
+
+table{
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+td{
+  padding: 15px;
+}
