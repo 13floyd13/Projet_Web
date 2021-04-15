@@ -2,7 +2,9 @@
 require_once('../model/utilisateurDAO_class.php');
 
 session_start();
-
+if (isset($_POST['inscription'])){
+    require('../view/login.view.html');
+}
 if (isset($_POST['lg'])) {
   $login = $_POST['lg'];
 
