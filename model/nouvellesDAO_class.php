@@ -63,8 +63,8 @@ class NouvellesDAO
     }
 
     function isExistNouvelle(string $titre,string $description): bool {
-        //$titre= $this->db->quote($titre);
-        //$description=$this->db->quote($description);
+        $titre= $this->db->quote($titre);
+        $description=$this->db->quote($description);
         $commandeRequete= "SELECT id FROM nouvelles WHERE description = :description AND titre = :titre";
         $requete= $this->db->prepare($commandeRequete);
         $requete->bindParam(':titre',$titre,PDO::PARAM_STR );
