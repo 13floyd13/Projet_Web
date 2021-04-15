@@ -91,9 +91,9 @@ class Flux_utilisateurDAO
         if ($this->isExistFlux_utilisateur($flux_utilisateur->getLogin(), $flux_utilisateur->getFlux())) {
             return false;
         }
-        //$login = $this->db->quote($flux_utilisateur->getLogin());
-        //$nom = $this->db->quote($flux_utilisateur->getNom());
-        //$categorie = $this->db->quote($flux_utilisateur->getCategorie());
+        $login =$flux_utilisateur->getLogin();
+        $nom = $flux_utilisateur->getNom();
+        $categorie = $this->db->quote($flux_utilisateur->getCategorie());
         $flux= $flux_utilisateur->getFlux();
         //$commandeRequete = 'INSERT INTO flux_utilisateur(flux, login, nom, categorie) VALUES(\'' . $flux_utilisateur->getFlux() . '\', ' . $login . ', ' . $nom . ', ' . $categorie . ')';
         $commandeRequete= 'INSERT INTO flux_utilisateur(flux, login, nom, categorie) VALUES( :flux , :login, :nom, :categorie)';
