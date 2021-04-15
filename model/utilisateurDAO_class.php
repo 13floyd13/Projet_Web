@@ -20,7 +20,6 @@ class UtilisateurDAO
 
     function getUtilisateur(string $login): Utilisateur
     {
-        //$login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM utilisateurs WHERE login= :login";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':login',$login,PDO::PARAM_STR);
@@ -57,7 +56,6 @@ class UtilisateurDAO
         $requete = $this->db->prepare('SELECT * FROM utilisateurs WHERE login= :login');
 
         if ($requete) {
-            //$login = $this->db->quote($login);
             $requete->BindParam(':login',$login);
             $requete->execute();
             $resultat = $requete->fetchAll();
@@ -71,8 +69,8 @@ class UtilisateurDAO
         if ($this->isExistUtilisateur($utilisateur->getLogin())) {
             return;
         }
-        $login = $this->db->quote($utilisateur->getLogin());
-        $mp = $this->db->quote($utilisateur->getMp());
+        $login=$utilisateur->getLogin();
+        $mp=$utilisateur->getMp();
         $commandeRequete = 'INSERT INTO utilisateurs(login,mp) VALUES( :login, :mp)';
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':login',$login,PDO::PARAM_STR);

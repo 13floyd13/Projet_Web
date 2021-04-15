@@ -1,5 +1,5 @@
 <?php
-
+require_once('../model/utilisateurDAO_class.php');
 if (isset($_POST['lg'])) {
     $login = $_POST['lg'];
 
@@ -12,7 +12,7 @@ if (isset($_POST['mdp'])) {
     $mdp = "";
 }
 $dao = new UtilisateurDAO;
-if ($login === "" || $mdp === "" || !($dao->isExistUtilisateur($login))) {
+if ($login === "" || $mdp === "" || ($dao->isExistUtilisateur($login))) {
     print ("Erreur à l\'inscription, vous allez être redirigé vers la page connexion");
     sleep(10);
     require('../view/login.view.html');
