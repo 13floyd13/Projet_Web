@@ -1,6 +1,6 @@
 <?php
-require_once('../model/utilisateurDAO_class.php');
 session_start();
+require_once('../model/utilisateurDAO_class.php');
 
 $dao = new UtilisateurDAO;
 $etoile = "";
@@ -22,7 +22,7 @@ for ($i=0; $i < strlen($mdp); $i++) {
   <body>
 
     <header>
-      <a class="return" href="nav.view.php">&#8592;</a>
+      <a class="return" href="../controler/actus.ctrl.php">&#8592;</a>
     </header>
 
     <div id="container">
@@ -33,7 +33,7 @@ for ($i=0; $i < strlen($mdp); $i++) {
           <p><?= $_SESSION['login'] ?></p>
         </article>
       </form>
-      <form action="../controler/modifier_mdp.ctrl.php" method="post">
+      <form action="../controler/modifier_mp.ctrl.php" method="post">
         <article>
           <input class="modif" type="submit" value="(modifier)">
           <h1>Votre mot de passe</h1>

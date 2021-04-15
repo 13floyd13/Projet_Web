@@ -6,20 +6,3 @@ body {
 h1, h2, h3, h4, h5, h6 {
     margin: 0em;
 }
-
-article{
-  border-radius: 5px;
-  background-color: #384454;
-  color: #B1AAA0;
-}
-
-article > img{
-  float: right;
-  width: 10%;
-  height: auto;
-}
-
-article > a{
-  text-decoration: none;
-  color: inherit;
-}

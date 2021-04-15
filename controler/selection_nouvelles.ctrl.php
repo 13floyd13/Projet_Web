@@ -3,7 +3,6 @@
 session_start();
 require_once "../model/flux_utilisateurDAO_class.php";
 require_once "../model/nouvellesDAO_class.php";
-require_once "../controler/actualisation_flux.php";
 
 $flux_utilisateur_db = new Flux_utilisateurDAO();
 $nouvelles_bd = new NouvellesDAO();
