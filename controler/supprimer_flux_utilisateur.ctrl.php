@@ -1,7 +1,15 @@
 <?php
 
-$url = $_POST['url'];
-$flux_utilisateurDAO = new Flux_utilisateurDAO();
-$flux = new Flux($url);
+session_start();
+require_once "../model/flux_utilisateurDAO_class.php";
+require_once "../model/flux_utilisateur_class.php";
 
-$flux_utilisateurDAO->removeFlux_utilisateur($flux);
+if (!isset($_POST['url'])) {
+    return ;
+}
+$url = $_POST['url'];
+$login = $_SESSION['login'];
+$flux_utilisateurDAO = new Flux_utilisateurDAO();
+$flux_utilisateur = new Flux_utilisateur($url, $login);
+
+$flux_utilisateurDAO->removeFlux_utilisateur($flux_utilisateur, $login);
