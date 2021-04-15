@@ -14,9 +14,9 @@ session_start();
     <?php
     require ("../controler/ajouter_flux.ctrl.php");
 
-    if (isset($_GET['erreur_nom_flux']) && $_GET['erreur_nom_flux'] === "true") {
+    if (isset($erreur_nom_flux) && $erreur_nom_flux == true) {
         print "<p class='erreur'>Ce nom est déjà utilisé par un autre flux</p>";
-    } else if (isset($_GET['erreur_url_flux']) && $_GET['erreur_url_flux'] === "true") {
+    } else if (isset($erreur_url_flux) && $erreur_url_flux == true) {
         print "<p class='erreur'>Ce flux est déjà dans votre liste</p>";
     }
     ?>
