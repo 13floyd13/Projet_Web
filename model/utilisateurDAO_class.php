@@ -51,8 +51,6 @@ class UtilisateurDAO
             $requete->BindParam(':login',$login);
             $requete->execute();
             $resultat = $requete->fetchAll();
-            print_r($resultat);
-            print_r(count($resultat));
             $requete->closeCursor();
             return count($resultat) > 0;
         }
