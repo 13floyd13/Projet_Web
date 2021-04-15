@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="fr" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -6,7 +5,6 @@
     <link rel="stylesheet" href="../view/design/login.css">
   </head>
   <body>
-
     <div id="container">
       <h1>Actus Capture</h1>
       <form action="../controler/login.ctrl.php" method="post">

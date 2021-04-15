@@ -1,4 +1,4 @@
-<form action="../controler/ajouter_flux.ctrl.php" method="POST">
+<form action="../controler/actus.ctrl.php" method="POST">
     <fieldset>
         <legend>Nouveau flux</legend>
         <label for="i_url">URL</label><br>

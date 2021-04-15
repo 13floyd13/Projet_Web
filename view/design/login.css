@@ -1,3 +1,5 @@
+
+
 body{
   background-color: #181A1B;
   font-family: Arial Black, sans-serif;
@@ -25,4 +27,9 @@ table{
 .input{
   width: 50%;
   margin: 10px;
+}
+
+.erreur {
+  text-align: center;
+  color: red;
 }

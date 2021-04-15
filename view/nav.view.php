@@ -6,7 +6,11 @@ session_start();
 
 <div id="nav">
   <p>Bonjour <?= $_SESSION['login'] ?></p>
-    <a class="account" href="../controler/actus.ctrl.php?account=page">&#128100;</a>
+    <div id="barre_raccourcis">
+        <a class="raccourcis" href="../controler/actus.ctrl.php?account=page">&#128100;</a>
+        <a class="raccourcis" href="../controler/login.ctrl.php?logout=true">&#9211;</a>
+    </div>
+
     <?php
     require ("../controler/ajouter_flux.ctrl.php");
 
@@ -29,7 +33,7 @@ session_start();
         $fluxs_utilisateur = $flux_utilisateurDAO->getFlux_utilisateurByLogin($_SESSION['login']);
         foreach ($fluxs_utilisateur as $flux_utilisateur) { ?>
             <li><form action="../controler/actus.ctrl.php" method="POST">
-                    <input type="hidden" id="url" name="url" value="<?= $flux_utilisateur->getFlux() ?>">
+                    <input type="hidden" id="url_a_supprimer" name="url_a_supprimer" value="<?= $flux_utilisateur->getFlux() ?>">
                     <input class="supprimer" type="submit" value="&times;">
                 </form>
                 <a href="../controler/actus.ctrl.php?flux=<?= $flux_utilisateur->getNom() ?>"><?= $flux_utilisateur->getNom() ?></a>

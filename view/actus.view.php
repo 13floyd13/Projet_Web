@@ -4,7 +4,12 @@
 <div id="body">
     <title>Main page</title>
     <?php
-    require_once("../controler/supprimer_flux_utilisateur.ctrl.php");
+    if (isset($_POST['i_url']) && !empty($_POST['i_url'])) {
+        require_once("../controler/ajouter_flux.ctrl.php");
+    }
+    if (isset($_POST['url_a_supprimer']) && !empty($_POST['url_a_supprimer'])) {
+        require_once("../controler/supprimer_flux_utilisateur.ctrl.php");
+    }
     if (isset($_GET['account']) && $_GET['account'] === "page") {
         require_once ("../controler/account.ctrl.php");
     } else if (isset($_GET['erreur_nom_flux']) && $_GET['erreur_nom_flux'] === "true") {
