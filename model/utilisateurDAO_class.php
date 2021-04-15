@@ -91,7 +91,7 @@ class UtilisateurDAO
                 $requete1->execute();
             }
             $requete1->closeCursor();
-            $commandeRequete2="DELETE FROM flux WHERE login= :loginAdelete";
+            $commandeRequete2="DELETE FROM utilisateurs WHERE login= :loginAdelete";
             $requete2= $this->db->prepare($commandeRequete2);
             $requete2->bindParam(':loginAdelete',$loginAdelete,PDO::PARAM_STR);
             if($requete2){
