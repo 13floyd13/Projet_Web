@@ -73,11 +73,11 @@ class Flux_utilisateurDAO
     function isExistFlux_utilisateur(string $login, string $flux): bool
     {
         //$login = $this->db->quote($login);
-        $commandeRequete = "SELECT * FROM nouvelles WHERE flux= :flux AND login= :login";
+        $commandeRequete = "SELECT * FROM flux_utilisateur WHERE flux= :flux AND login= :login";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam(':flux',$flux,PDO::PARAM_STR );
-        $requete->bindParam(':login',$login,PDO::PARAM_STR);
         if ($requete) {
+            $requete->bindParam(':flux',$flux,PDO::PARAM_STR );
+            $requete->bindParam(':login',$login,PDO::PARAM_STR);
             $requete->execute();
             $resultat = $requete->fetchAll();
             $requete->closeCursor();
@@ -110,17 +110,18 @@ class Flux_utilisateurDAO
 
     function removeFlux_utilisateur(Flux_utilisateur $flux_utilisateur)
     {
-        if ($this->isExistFlux_utilisateur()) {
+        if ($this->isExistFlux_utilisateur($flux_utilisateur->getLogin(), $flux_utilisateur->getFlux())) {
             $fluxAdelete = $flux_utilisateur->getFlux();
-            $commandeRequete = "DELETE  FROM flux WHERE flux= :fluxAdelete";
+            $commandeRequete = "DELETE FROM flux_utilisateur WHERE flux= :fluxAdelete";
             $requete = $this->db->prepare($commandeRequete);
-            $requete->bindParam(':fluxAdelete',$fluxAdelete,PDO::PARAM_STR);
             if ($requete) {
+                $requete->bindParam(':fluxAdelete',$fluxAdelete,PDO::PARAM_STR);
                 $requete->execute();
                 $requete->closeCursor();
             }
         }
     }
+
     function removeFlux_utilisateurByFlux($flux,$login){
         if ($this->isExistFlux_utilisateur()) {
             $commandeRequete = "DELETE  FROM flux WHERE flux= :flux AND login= :login";

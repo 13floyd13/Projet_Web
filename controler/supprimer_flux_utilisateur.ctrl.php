@@ -12,4 +12,4 @@ $login = $_SESSION['login'];
 $flux_utilisateurDAO = new Flux_utilisateurDAO();
 $flux_utilisateur = new Flux_utilisateur($url, $login);
 
-$flux_utilisateurDAO->removeFlux_utilisateur($flux_utilisateur, $login);
+$flux_utilisateurDAO->removeFlux_utilisateur($flux_utilisateur);
