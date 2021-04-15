@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)){
+    session_start();
+}
 require_once ("../model/flux_utilisateurDAO_class.php");
 
 $flux_utilisateurs_db= new Flux_utilisateurDAO();
