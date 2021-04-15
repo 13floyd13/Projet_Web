@@ -28,7 +28,7 @@ for ($i=0; $i < strlen($mdp); $i++) {
     <div id="container">
       <form id="first" action="../controler/modifier_login.ctrl.php" method="post">
         <article>
-          <input class="modif" type="submit" value="(modifier)">
+          <!--<input class="modif" type="submit" value="(modifier)">-->
           <h1>Votre Identifiant</h1>
           <p><?= $_SESSION['login'] ?></p>
         </article>
