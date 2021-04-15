@@ -29,7 +29,6 @@ if(!isset($_SESSION)){
   <a href="#">Catégories</a>
   <ul>
       <?php
-      $_SESSION['login'] = "admin";
       require_once ("../controler/actualisation_flux.php");
         $flux_utilisateurDAO = new Flux_utilisateurDAO();
         $fluxs_utilisateur = $flux_utilisateurDAO->getFlux_utilisateurByLogin($_SESSION['login']);
