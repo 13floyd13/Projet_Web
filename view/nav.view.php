@@ -9,6 +9,12 @@ session_start();
     <a class="account" href="../controler/actus.ctrl.php?account=page">&#128100;</a>
     <?php
     require ("../controler/ajouter_flux.ctrl.php");
+
+    if (isset($_GET['erreur_nom_flux']) && $_GET['erreur_nom_flux'] === "true") {
+        print "<p class='erreur'>Ce nom est déjà utilisé par un autre flux</p>";
+    } else if (isset($_GET['erreur_url_flux']) && $_GET['erreur_url_flux'] === "true") {
+        print "<p class='erreur'>Ce flux est déjà dans votre liste</p>";
+    }
     ?>
     <hr>
   <a href="../controler/actus.ctrl.php">Tous les flux</a>

@@ -27,11 +27,13 @@ if (!isset($i_nom_flux) || (isset($i_nom_flux) && empty($i_nom_flux))) {
 // ce flux n'est pas dans flux_utilisateur
 if ($fluxUtilisateur_db->isExistFlux_utilisateur($login, $i_nom_flux)) {
     // message d'erreur : "Ce nom est déjà dans votre liste"
+    require_once("../controler/actus.ctrl.php?erreur_nom_flux=true");
 }
 
 $fluxUtilisateur = new Flux_utilisateur($i_url, $login, $i_nom_flux, "");
 if ($fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur) == false) {
     // message d'erreur : "Ce flux est déjà dans votre liste"
+    require_once("../controler/actus.ctrl.php?erreur_url_flux=true");
 }
 
 $flux = new Flux($i_url);

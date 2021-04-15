@@ -67,3 +67,7 @@
 #nav > form {
     margin-bottom: 2em;
 }
+
+#nav .erreur {
+    color: red;
+}
