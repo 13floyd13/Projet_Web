@@ -20,10 +20,10 @@ class UtilisateurDAO
 
     function getUtilisateur(string $login): Utilisateur
     {
-        $login = $this->db->quote($login);
+        //$login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM utilisateurs WHERE login= :login";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('login',$login,PDO::PARAM_STR);
+        $requete->bindParam(':login',$login,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Utilisateur");
@@ -47,7 +47,7 @@ class UtilisateurDAO
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM utilisateurs WHERE login= :login";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('login',$login,PDO::PARAM_STR);
+        $requete->bindParam(':login',$login,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll();
@@ -65,8 +65,8 @@ class UtilisateurDAO
         $mp = $this->db->quote($utilisateur->getMp());
         $commandeRequete = 'INSERT INTO utilisateurs(login,mp) VALUES( :login, :mp)';
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('login',$login,PDO::PARAM_STR);
-        $requete->bindParam('mp',$mp,PDO::PARAM_STR);
+        $requete->bindParam(':login',$login,PDO::PARAM_STR);
+        $requete->bindParam(':mp',$mp,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $requete->closeCursor();
@@ -78,14 +78,14 @@ class UtilisateurDAO
             $loginAdelete= $utilisateur->getLogin();
             $commandeRequete1="DELETE FROM flux_utilisateurs WHERE login= :loginAdelete";
             $requete1=$this->db->prepare($commandeRequete1);
-            $requete1->bindParam('loginAdelete',$loginAdelete,PDO::PARAM_STR);
+            $requete1->bindParam(':loginAdelete',$loginAdelete,PDO::PARAM_STR);
             if($requete1){
                 $requete1->execute();
             }
             $requete1->closeCursor();
             $commandeRequete2="DELETE FROM flux WHERE login= :loginAdelete";
             $requete2= $this->db->prepare($commandeRequete2);
-            $requete2->bindParam('loginAdelete',$loginAdelete,PDO::PARAM_STR);
+            $requete2->bindParam(':loginAdelete',$loginAdelete,PDO::PARAM_STR);
             if($requete2){
                 $requete2->execute();
             }

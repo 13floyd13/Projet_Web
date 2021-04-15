@@ -24,7 +24,7 @@ class FluxDAO
     {
         $commandeRequete = "SELECT * FROM flux WHERE url= :url";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('url',$url,PDO::PARAM_STR);
+        $requete->bindParam(':url',$url,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux");
@@ -46,7 +46,7 @@ class FluxDAO
     function isExistFlux(string $url): bool {
         $commandeRequete="SELECT url FROM flux WHERE url= :url";
         $requete=$this->db->prepare($commandeRequete);
-        $requete->bindParam('url',$url,PDO::PARAM_STR);
+        $requete->bindParam(':url',$url,PDO::PARAM_STR);
         if($requete){
             $requete->execute();
             $resultat=$requete->fetchAll();
@@ -63,7 +63,7 @@ class FluxDAO
         $url=$flux->getUrl();
         $commandeRequete='INSERT INTO flux(url) VALUES( :url)';
         $requete= $this->db->prepare($commandeRequete);
-        $requete->bindParam('url',$url,PDO::PARAM_STR);
+        $requete->bindParam(':url',$url,PDO::PARAM_STR);
         if($requete){
             $requete->execute();
             $requete->closeCursor();
@@ -75,21 +75,21 @@ class FluxDAO
             $urlAdelete= $flux->getUrl();
             $commandeRequete1="DELETE FROM nouvelles WHERE flux= :urlAdelete";
             $requete1=$this->db->prepare($commandeRequete1);
-            $requete1->bindParam('urlAdelete',$urlAdelete,PDO::PARAM_STR);
+            $requete1->bindParam(':urlAdelete',$urlAdelete,PDO::PARAM_STR);
             if($requete1){
                 $requete1->execute();
             }
             $requete1->closeCursor();
             $commandeRequete2="DELETE FROM flux_utilisateurs WHERE flux= :urlAdelete";
             $requete2=$this->db->prepare($commandeRequete2);
-            $requete2->bindParam('urlAdelete',$urlAdelete,PDO::PARAM_STR);
+            $requete2->bindParam(':urlAdelete',$urlAdelete,PDO::PARAM_STR);
             if($requete2){
                 $requete2->execute();
             }
             $requete2->closeCursor();
             $commandeRequete3="DELETE FROM flux WHERE url= :urlAdelete";
             $requete3= $this->db->prepare($commandeRequete3);
-            $requete3->bindParam('urlAdelete',$urlAdelete,PDO::PARAM_STR);
+            $requete3->bindParam(':urlAdelete',$urlAdelete,PDO::PARAM_STR);
             if($requete3){
                 $requete3->execute();
             }

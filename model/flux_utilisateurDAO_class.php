@@ -22,8 +22,8 @@ class Flux_utilisateurDAO
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT nom FROM flux_utilisateur WHERE flux= :flux AND login=:login";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('flux',$flux,PDO::PARAM_STR );
-        $requete->bindParam('login',$login,PDO::PARAM_STR);
+        $requete->bindParam(':flux',$flux,PDO::PARAM_STR );
+        $requete->bindParam(':login',$login,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
@@ -37,8 +37,8 @@ class Flux_utilisateurDAO
         $nom = $this->db->quote($nom);
         $commandeRequete = "SELECT * FROM flux_utilisateur WHERE nom= :nom AND login= :login";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('nom',$nom,PDO::PARAM_STR );
-        $requete->bindParam('login',$login,PDO::PARAM_STR);
+        $requete->bindParam(':nom',$nom,PDO::PARAM_STR );
+        $requete->bindParam(':login',$login,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
@@ -51,7 +51,7 @@ class Flux_utilisateurDAO
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM flux_utilisateur WHERE login= :login";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('login',$login,PDO::PARAM_STR);
+        $requete->bindParam(':login',$login,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
@@ -75,8 +75,8 @@ class Flux_utilisateurDAO
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT * FROM nouvelles WHERE flux= :flux AND login= :login";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('flux',$flux,PDO::PARAM_STR );
-        $requete->bindParam('login',$login,PDO::PARAM_STR);
+        $requete->bindParam(':flux',$flux,PDO::PARAM_STR );
+        $requete->bindParam(':login',$login,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll();
@@ -98,10 +98,10 @@ class Flux_utilisateurDAO
         //$commandeRequete = 'INSERT INTO flux_utilisateur(flux, login, nom, categorie) VALUES(\'' . $flux_utilisateur->getFlux() . '\', ' . $login . ', ' . $nom . ', ' . $categorie . ')';
         $commandeRequete= 'INSERT INTO flux_utilisateur(flux, login, nom, categorie) VALUES( :flux , :login, :nom, :categorie)';
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('flux',$flux,PDO::PARAM_STR );
-        $requete->bindParam('login',$login,PDO::PARAM_STR);
-        $requete->bindParam('nom',$nom,PDO::PARAM_STR);
-        $requete->bindParam('categorie',$categorie,PDO::PARAM_STR);
+        $requete->bindParam(':flux',$flux,PDO::PARAM_STR );
+        $requete->bindParam(':login',$login,PDO::PARAM_STR);
+        $requete->bindParam(':nom',$nom,PDO::PARAM_STR);
+        $requete->bindParam(':categorie',$categorie,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $requete->closeCursor();
@@ -113,7 +113,7 @@ class Flux_utilisateurDAO
         if ($this->isExistFlux_utilisateur()) {
             $fluxAdelete = $flux_utilisateur->getFlux();
             $commandeRequete = "DELETE  FROM flux WHERE flux= :fluxAdelete";
-            $requete->bindParam('fluxAdelete',$fluxAdelete,PDO::PARAM_STR);
+            $requete->bindParam(':fluxAdelete',$fluxAdelete,PDO::PARAM_STR);
             $requete = $this->db->prepare($commandeRequete);
             if ($requete) {
                 $requete->execute();
@@ -125,8 +125,8 @@ class Flux_utilisateurDAO
         if ($this->isExistFlux_utilisateur()) {
             $commandeRequete = "DELETE  FROM flux WHERE flux= :flux AND login= :login";
             $requete = $this->db->prepare($commandeRequete);
-            $requete->bindParam('flux',$flux,PDO::PARAM_STR );
-            $requete->bindParam('login',$login,PDO::PARAM_STR);
+            $requete->bindParam(':flux',$flux,PDO::PARAM_STR );
+            $requete->bindParam(':login',$login,PDO::PARAM_STR);
             if ($requete) {
                 $requete->execute();
                 $requete->closeCursor();
@@ -139,7 +139,7 @@ class Flux_utilisateurDAO
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT DISTINCT categorie FROM flux_utilisateur WHERE login= :login ORDER BY categorie";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('login',$login,PDO::PARAM_STR);
+        $requete->bindParam(':login',$login,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
@@ -150,8 +150,8 @@ class Flux_utilisateurDAO
         $login = $this->db->quote($login);
         $commandeRequete = "SELECT DISTINCT flux FROM flux_utilisateur WHERE login= :login AND categorie= :categorie";
         $requete = $this->db->prepare($commandeRequete);
-        $requete->bindParam('login',$login,PDO::PARAM_STR);
-        $requete->bindParam('categorie',$categorie,PDO::PARAM_STR);
+        $requete->bindParam(':login',$login,PDO::PARAM_STR);
+        $requete->bindParam(':categorie',$categorie,PDO::PARAM_STR);
         if ($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
