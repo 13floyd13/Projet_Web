@@ -3,8 +3,7 @@
 <div id="actus">
     <title>Main page</title>
     <?php
-    include("nav.view.php");
-    $flux = "https://www.lemonde.fr/rss/une.xml";
-    include("../controler/afficher_nouvelles_flux_selectionne.ctrl.php");
+    include("../view/nav.view.php");
+    include("../controler/selection_nouvelles.ctrl.php");
     ?>
 </div>
