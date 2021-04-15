@@ -28,5 +28,6 @@ table{
 }
 
 td{
+  text-align: left;
   padding: 15px;
 }
