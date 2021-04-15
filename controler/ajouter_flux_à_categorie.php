@@ -1,8 +1,6 @@
 <?php
 //on récupère le nom du flux par un formulaire et le nom de la catégorie
-if(!isset($_SESSION)){
-    session_start();
-}
+session_start();
 require_once ("../model/flux_utilisateurDAO_class.php");
 
 $nom_flux=$_POST['nom_flux'];

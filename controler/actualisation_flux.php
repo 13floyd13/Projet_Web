@@ -1,7 +1,5 @@
 <?php
-    if(!isset($_SESSION)){
     session_start();
-}
     require_once("../model/flux_utilisateurDAO_class.php");
     require_once("../model/nouvellesDAO_class.php");
 
@@ -10,7 +8,7 @@
     $tab_flux = $flux_utilisateur_db->getFlux_utilisateurByLogin($login);
     foreach ($tab_flux as $flux) {
         $i_url = $flux->getFlux();
-        // require 'collecter_nouvelles.php';
+        // require_once 'collecter_nouvelles.php';
         $xml = simplexml_load_file($i_url);
         $nouvelles_db = new NouvellesDAO();
         $nouvelles = $xml->xpath("//item");
@@ -18,6 +16,10 @@
         foreach ($nouvelles as $nouvelleXML) {
             $titre_nouvelle = $nouvelleXML->title;
             $description_nouvelle = $nouvelleXML->description;
+
+            if ($nouvelles_db->isExistNouvelle($titre_nouvelle, $description_nouvelle)) {
+                continue;
+            }
 
             if (count($nouvelleXML->children('media', True)) != 0) {
                 $url_image = $nouvelleXML->children('media', True)->content->attributes()['url'];

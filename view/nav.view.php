@@ -1,7 +1,5 @@
 <?php
-if(!isset($_SESSION)){
-    session_start();
-}
+session_start();
 ?>
 
 
@@ -11,6 +9,7 @@ if(!isset($_SESSION)){
     <div id="barre_raccourcis">
         <a class="raccourcis" href="../controler/actus.ctrl.php?account=page">&#128100;</a>
         <a class="raccourcis" href="../controler/login.ctrl.php?logout=true">&#9211;</a>
+        <a class="raccourcis" href="../controler/actus.ctrl.php?actualiser=true">&#11119;</a>
     </div>
 
     <?php
@@ -29,7 +28,6 @@ if(!isset($_SESSION)){
   <a href="#">Catégories</a>
   <ul>
       <?php
-      require_once ("../controler/actualisation_flux.php");
         $flux_utilisateurDAO = new Flux_utilisateurDAO();
         $fluxs_utilisateur = $flux_utilisateurDAO->getFlux_utilisateurByLogin($_SESSION['login']);
         foreach ($fluxs_utilisateur as $flux_utilisateur) { ?>

@@ -3,9 +3,7 @@ require_once("../model/fluxDAO_class.php");
 require_once("../model/flux_utilisateurDAO_class.php");
 
 
-if(!isset($_SESSION)){
-    session_start();
-}
+session_start();
 
 if (!isset($_POST['i_url'])) {
     require_once("../view/ajouter_flux.view.php");

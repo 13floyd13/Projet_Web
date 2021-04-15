@@ -1,9 +1,7 @@
 <article class="nouvelle">
     <img src="<?= $nouvelle->getImage() ?>" alt="image article">
     <?php
-    if(!isset($_SESSION)){
     session_start();
-}
 
     $lien = $nouvelle->getLien();
     $message = "<h3>" . $nouvelle->getTitre() . "</h3>";

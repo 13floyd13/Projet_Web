@@ -12,7 +12,7 @@ h1{
   margin: auto;
   margin-top: 10%;
   padding: 20px;
-  color: #B1AAA0;
+  color: #EEEEEE;
   border-radius: 5px;
   background-color: #384454;
   text-align: center;
@@ -25,6 +25,10 @@ table{
 .input{
   width: 50%;
   margin: 10px;
+}
+
+label {
+  color: #EEEEEE;
 }
 
 .erreur {
