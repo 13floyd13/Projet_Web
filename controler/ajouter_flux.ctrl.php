@@ -2,8 +2,9 @@
 require_once("../model/fluxDAO_class.php");
 require_once("../model/flux_utilisateurDAO_class.php");
 
-
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
 
 if (!isset($_POST['i_url'])) {
     require_once("../view/ajouter_flux.view.php");
@@ -38,5 +39,3 @@ $flux_db->addFlux($flux);
 unset($_POST);
 require_once ("actualisation_flux.php");
 require_once("../controler/actus.ctrl.php");
-
-
