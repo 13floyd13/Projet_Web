@@ -19,11 +19,11 @@ foreach ($nouvelles as $nouvelleXML) {
 
     $img = "../data/images/image";
     $img .= $nouvelles_db->getNombreNouvelles()+1;
-    if (str_contains($url_image,'.jpg')||str_contains($url_image,'.jpeg')||str_contains($url_image,'.JPEG')||str_contains($url_image,'.JPG'))
+    if (strpos($url_image,'.jpg')||strpos($url_image,'.jpeg')||strpos($url_image,'.JPEG')||strpos($url_image,'.JPG'))
         $img .= "jpg";
-    else if (str_contains($url_image,'.png')||str_contains($url_image,'.PNG'))
+    else if (strpos($url_image,'.png')||strpos($url_image,'.PNG'))
         $img .= "png";
-    else if (str_contains($url_image,'.gif')||str_contains($url_image,'.GIF'))
+    else if (strpos($url_image,'.gif')||strpos($url_image,'.GIF'))
         $img .= "gif";
     else
         $img .= "";
@@ -33,7 +33,7 @@ foreach ($nouvelles as $nouvelleXML) {
     $nouvelles_db->addNouvelle($nouvelle);
 }
 
-function str_contains($haystack, $needle)
+function strpos($haystack, $needle)
 {
     return $needle !== '' && mb_strpos($haystack, $needle) !== false;
 }
