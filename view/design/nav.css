@@ -74,3 +74,9 @@
     justify-content: center;
     margin-bottom: 1em;
 }
+
+#extension {
+    margin-top: 520px;
+    position: relative;
+    bottom: 0px;
+}
