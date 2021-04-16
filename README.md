@@ -29,5 +29,5 @@ Patrice Martin
 - le formulaire pour ajouter un flux disparaît après avoir cliqué sur le bouton valider. Il réapparaît en cliquant sur Tous les flux par exemple
 
 # Statistiques du projet
-- 298 commits
+- 300 commits
 - 116 pull request
