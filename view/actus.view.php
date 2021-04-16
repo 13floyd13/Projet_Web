@@ -1,15 +1,3 @@
-<?php
-  if (!isset($_SESSION)) {
-    session_start();
-  }
-  require_once('../model/flux_utilisateurDAO_class.php');
-
-  $dao = new Flux_utilisateurDAO;
-
-  if ($dao->getFlux_utilisateurByLogin($_SESSION['login'])==NULL) {
-    echo '<style>#body{height: 100%;}</style>';
-  }
-?>
 <link rel="stylesheet" href="../view/design/global.css">
 <link rel="stylesheet" href="../view/design/body.css">
 <link rel="stylesheet" href="../view/design/nav.css">
@@ -28,8 +16,6 @@
         require_once("../controler/actualisation_flux.php");
         require_once("../view/nav.view.php");
         include("../controler/selection_nouvelles.ctrl.php");
-    }else if(isset($_POST['Mot']) && !empty($_POST['Mot'])){
-        require_once("../controler/search.ctrl.php");
     } else {
         require_once("../view/nav.view.php");
         require_once("../controler/selection_nouvelles.ctrl.php");

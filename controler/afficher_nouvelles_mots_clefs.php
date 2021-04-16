@@ -8,7 +8,7 @@ $nouvelles_base = $nouvellesDAO->getNouvelles();
 
 $nouvelles = array();
 foreach($nouvelles_base as $nouvelle) {
-    if (!str_contains($nouvelle->getDescription(), $mot_cle)) {
+    if (!strpos($nouvelle->getDescription(), $mot_cle)) {
         array_push($nouvelles, $nouvelle);
     }
 }

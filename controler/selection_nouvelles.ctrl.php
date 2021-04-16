@@ -9,7 +9,7 @@ require_once "../model/nouvellesDAO_class.php";
 $flux_utilisateur_db = new Flux_utilisateurDAO();
 $nouvelles_bd = new NouvellesDAO();
 $nouvelles = array();
-if (isset($_GET['flux']) && !empty($_GET['flux'])){
+if (isset($_GET['flux']) && !empty($_GET['flux'])) {
     $nomFlux = $_GET['flux'];
     try {
         $flux = $flux_utilisateur_db->getFlux_utilisateur($nomFlux, $_SESSION["login"])->getFlux();
@@ -29,11 +29,23 @@ if (isset($_GET['flux']) && !empty($_GET['flux'])){
             require ("404.php");
         }
     }
-    if (sizeof($tab_flux) == 0) {
-        require ("404.php");
-    }
     usort($nouvelles, "triParDate");
 }
+
+if (isset($_GET['mot']) && !empty($_GET['mot'])) {
+    $mot = $_GET['mot'];
+    print sizeof($nouvelles);
+    foreach($nouvelles as $i => $nouvelle) {
+        if (!strpos($nouvelle->getTitre(), $mot) && !strpos($nouvelle->getDescription(), $mot)) {
+            unset($nouvelles[$i]);
+        }
+    }
+}
+
+if (sizeof($nouvelles) == 0) {
+    require ("404.php");
+}
+
 require'afficher_nouvelles.ctrl.php';
 
 function triParDate($a, $b) {

@@ -26,21 +26,19 @@ if (!isset($_SESSION)) {
     }
     ?>
 
-    <form action="../controler/actus.ctrl.php" method="POST">
-        <fieldset>
-            <label for="Mot">Entrez un mot-clé</label><br>
-            <input type="text" id="Mot" name="Mot" placeholder="mot-clé" maxlength="255" required><br>
-            <input type="submit" value="Rechercher">
-        </fieldset>
-    </form>
-
     <hr>
+
     <div>
-      <form method="post" action="search.php">
+      <form method="GET" action="../controler/actus.ctrl.php">
         <fieldset>
-          <legend>Entrez un mot clé:</legend>
-          <input type="text" name="Mot" size="15">
-          <input type="submit" value="Rechercher" alt="Lancer la recherche!">
+          <legend>Recherche par mot-clé</legend>
+            <label for="mot">Entrez un mot-clé</label><br>
+          <input type="text" name="mot" size="15" placeholder="mot-clé" required>
+            <?php
+            if (isset($_GET['flux']) && !empty($_GET['flux'])) { ?>
+                <input type="hidden" name="flux" value="<?= $_GET['flux'] ?>">
+            <?php } ?>
+            <input type="submit" value="Rechercher">
         </fieldset>
       </form>
     </div>
