@@ -1,5 +1,6 @@
 # S2301 - Projet PHP
 
+# Contributeurs
 Alexandre Bouijoux
 Léo Garand
 Patrice Martin
@@ -16,3 +17,11 @@ Patrice Martin
 - actualiser les flux
 - changer son mdp
 - pour le compte admin : voir la liste des utilisateurs et supprimer un utilisateur
+
+# Fonctionnalités en cours de dév
+- ajout / modification / suppression d'une catégorie
+- assignation d'un flux à une catégorie
+- sélection des éléments à afficher dans les articles
+
+# Bugs connus
+- le formulaire pour ajouter un flux disparaît après avoir cliqué sur le bouton valider. Il réapparaît en cliquant sur Tous les flux par exemple
