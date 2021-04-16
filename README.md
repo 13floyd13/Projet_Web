@@ -18,7 +18,7 @@ Patrice Martin
 - changer son mdp
 - pour le compte admin : voir la liste des utilisateurs et supprimer un utilisateur
 
-# Fonctionnalités en cours de dév
+# En cours de dév
 - ajout / modification / suppression d'une catégorie
 - assignation d'un flux à une catégorie
 - sélection des éléments à afficher dans les articles
