@@ -15,12 +15,14 @@ if (!isset($_SESSION)) {
     </div>
 
     <?php
-    require("../controler/ajouter_flux.ctrl.php");
+    require_once("../controler/ajouter_flux.ctrl.php");
 
     if (isset($erreur_nom_flux) && $erreur_nom_flux == true) {
         print "<p class='erreur'>Ce nom est déjà utilisé par un autre flux</p>";
     } else if (isset($erreur_url_flux) && $erreur_url_flux == true) {
         print "<p class='erreur'>Ce flux est déjà dans votre liste</p>";
+    } else if (isset($erreur_acces_url) && $erreur_acces_url == true) {
+        print "<p class='erreur'>Ce flux n'est pas valide</p>";
     }
     ?>
     <hr>
