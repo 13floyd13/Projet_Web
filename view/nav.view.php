@@ -1,8 +1,6 @@
 <?php
-session_start();
+  session_start();
 ?>
-
-
 
 <div id="nav">
   <p>Bonjour <?= $_SESSION['login'] ?></p>
@@ -21,6 +19,16 @@ session_start();
         print "<p class='erreur'>Ce flux est déjà dans votre liste</p>";
     }
     ?>
+    <hr>
+    <div>
+      <form method="post" action="search.php">
+        <fieldset>
+          <legend>Entrez un mot clé:</legend>
+          <input type="text" name="Mot" size="15">
+          <input type="submit" value="Rechercher" alt="Lancer la recherche!">
+        </fieldset>
+      </form>
+    </div>
     <hr>
   <a href="../controler/actus.ctrl.php">Tous les flux</a>
   <a href="#">Non lus</a>
