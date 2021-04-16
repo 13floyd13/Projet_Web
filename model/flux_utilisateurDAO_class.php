@@ -17,7 +17,7 @@ class Flux_utilisateurDAO
         }
     }
 
-    function getNomFlux_utilisateur(string $flux, string $login): ?Flux_utilisateur
+    function getNomFlux_utilisateur(string $flux, string $login): Flux_utilisateur
     {
         //$login = $this->db->quote($login);
         $commandeRequete = "SELECT nom FROM flux_utilisateur WHERE flux= :flux AND login=:login";
@@ -27,7 +27,7 @@ class Flux_utilisateurDAO
         if ($requete) {
             $requete->execute();
             $resultat = $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Flux_utilisateur");
-            return $resultat[0];
+            return array_unshift($resultat);
         }
     }
 
