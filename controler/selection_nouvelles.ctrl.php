@@ -8,7 +8,7 @@ $flux_utilisateur_db = new Flux_utilisateurDAO();
 $nouvelles_bd = new NouvellesDAO();
 $nouvelles = array();
 if (isset($_GET['flux']) && !empty($_GET['flux'])){
-    $nomFlux= htmlentities($_GET['flux']);
+    $nomFlux = $_GET['flux'];
     try {
         $flux = $flux_utilisateur_db->getFlux_utilisateur($nomFlux, $_SESSION["login"])->getFlux();
         $nouvelles = $nouvelles_bd->getNouvellesParFlux($flux);
