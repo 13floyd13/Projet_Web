@@ -1,5 +1,5 @@
 <article class="nouvelle">
-    <img src="<?= $nouvelle->getImage() ?>" alt="image article">
+    <img src="<?= $nouvelle->getImage() ?>" alt="">
     <?php
     if (!isset($_SESSION)) {
       session_start();
