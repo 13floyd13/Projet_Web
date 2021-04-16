@@ -28,6 +28,8 @@
         require_once("../controler/actualisation_flux.php");
         require_once("../view/nav.view.php");
         include("../controler/selection_nouvelles.ctrl.php");
+    }else if(isset($_POST['Mot']) && !empty($_POST['Mot'])){
+        require_once("../controler/search.ctrl.php");
     } else {
         require_once("../view/nav.view.php");
         require_once("../controler/selection_nouvelles.ctrl.php");

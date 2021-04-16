@@ -110,6 +110,20 @@ class NouvellesDAO
             }
         }
     }
+    function getNouvellesBySearch(string $flux, string $keyword) {
+
+        //$commandeRequete= "SELECT * FROM nouvelles WHERE flux= :flux AND titre IN (SELECT titre FROM nouvelles WHERE titre LIKE :keyword)";   //  "SELECT * FROM nouvelles WHERE flux= :flux AND titre LIKE :keyword AND description Like \"%:keyword%\" ORDER BY count(\"%:keyword%\") desc ";
+        $commandeRequete = "SELECT * FROM nouvelles WHERE flux= :flux AND titre LIKE \"%$keyword%\" OR description LIKE \"%$keyword%\"";
+        $requete=$this->db->prepare($commandeRequete);
+
+        if ($requete){
+            $requete->bindParam(':flux',$flux,PDO::PARAM_STR);
+            //$requete->bindParam(':keyword',$keyword,PDO::PARAM_STR);
+            $requete->execute();
+            $resultat= $requete->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, "Nouvelle");
+            return $resultat;
+        }
+    }
 
     private function getURLImage($nouvelle) : string
     {

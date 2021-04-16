@@ -25,6 +25,15 @@ if (!isset($_SESSION)) {
         print "<p class='erreur'>Ce flux n'est pas valide</p>";
     }
     ?>
+
+    <form action="../controler/actus.ctrl.php" method="POST">
+        <fieldset>
+            <label for="Mot">Entrez un mot-clé</label><br>
+            <input type="text" id="Mot" name="Mot" placeholder="mot-clé" maxlength="255" required><br>
+            <input type="submit" value="Rechercher">
+        </fieldset>
+    </form>
+
     <hr>
     <div>
       <form method="post" action="search.php">
