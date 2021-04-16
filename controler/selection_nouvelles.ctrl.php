@@ -34,7 +34,6 @@ if (isset($_GET['flux']) && !empty($_GET['flux'])) {
 
 if (isset($_GET['mot']) && !empty($_GET['mot'])) {
     $mot = $_GET['mot'];
-    print sizeof($nouvelles);
     foreach($nouvelles as $i => $nouvelle) {
         if (stripos($nouvelle->getTitre(), $mot) === false && stripos($nouvelle->getDescription(), $mot) === false) {
             unset($nouvelles[$i]);
