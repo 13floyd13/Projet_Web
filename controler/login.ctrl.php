@@ -28,7 +28,6 @@ if (isset($_POST["inscription"])){
             require("../controler/actualisation_flux.php");
             require('../controler/actus.ctrl.php');
         } else {
-            print "salut";
             require('../view/login.view.html');
         }
     }
