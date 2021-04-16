@@ -20,11 +20,12 @@ if (!isset($i_nom_flux) || (isset($i_nom_flux) && empty($i_nom_flux))) {
 }
 
 // ce flux n'est pas dans flux_utilisateur
-if ($fluxUtilisateur_db->isExistFlux_utilisateur($_SESSION['login'], $i_nom_flux)) {
+try {
+    $fluxUtilisateur_db->isExistFlux_utilisateur($_SESSION['login'], $i_nom_flux);
     // message d'erreur : "Ce nom est déjà dans votre liste"
     $erreur_nom_flux = true;
     require_once("../controler/actus.ctrl.php");
-}
+} catch (TypeError $t) {}
 
 $fluxUtilisateur = new Flux_utilisateur($i_url, $_SESSION['login'], $i_nom_flux, "");
 if ($fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur) == false) {
