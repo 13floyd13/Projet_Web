@@ -38,5 +38,6 @@ session_start();
                 <a href="../controler/actus.ctrl.php?flux=<?= $flux_utilisateur->getNom() ?>"><?= $flux_utilisateur->getNom() ?></a>
             </li>
         <?php } ?>
+      <p id="extension"></p>
   </ul>
 </div>
