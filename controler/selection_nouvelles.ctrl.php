@@ -27,7 +27,7 @@ if (isset($_GET['flux']) && !empty($_GET['flux'])){
             require ("404.php");
         }
     }
-    // usort($nouvelles, "triParDate");
+    usort($nouvelles, "triParDate");
 }
 require'afficher_nouvelles.ctrl.php';
 
