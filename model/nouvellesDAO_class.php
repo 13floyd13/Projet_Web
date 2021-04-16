@@ -18,8 +18,6 @@ class NouvellesDAO
     }
 
     function getNouvelle(string $titre,string $description): Nouvelle{
-        $titre= $this->db->quote($titre);
-        $description=$this->db->quote($description);
         $commandeRequete="SELECT * FROM nouvelles WHERE titre= :titre AND description= :description";
         $requete = $this->db->prepare($commandeRequete);
         $requete->bindParam(':titre',$titre,PDO::PARAM_STR );
@@ -63,8 +61,6 @@ class NouvellesDAO
     }
 
     function isExistNouvelle(string $titre,string $description): bool {
-        //$titre= $this->db->quote($titre);
-        //$description=$this->db->quote($description);
         $commandeRequete= "SELECT id FROM nouvelles WHERE description = :description AND titre = :titre";
         $requete= $this->db->prepare($commandeRequete);
         if($requete){
@@ -78,48 +74,33 @@ class NouvellesDAO
         return false;
     }
 
-    /*function addNouvelle(SimpleXMLElement $nouvelle, Flux $flux){
-        if ($this->isExistNouvelle($nouvelle->title, $nouvelle->description)){
-            return;
-        }
-        $url_image = $this->getURLImage($nouvelle);
-        $img = "";
-        if ($url_image != "")
-            $img = '../data/images/image' . $this->getNombreNouvelles() . '.' . $this->extensionImage($url_image);
-
-        $titre = $this->db->quote($nouvelle->title);
-        $description = $this->db->quote($nouvelle->description);
-        $pubDate = strftime("%Y-%m-%d %H:%M:%S", strtotime($nouvelle->pubDate));
-        $flux = $this->db->quote($flux->getUrl());
-
-        $commandeRequete = 'INSERT INTO nouvelles(date, titre, description, lien, image, flux) VALUES(\'' . $pubDate . '\', ' . $titre . ', ' . $description . ', \'' . $nouvelle->link . '\', \'' . $img . '\', ' . $flux . ')';
-        $requete = $this->db->prepare($commandeRequete);
-        if ($requete) {
-            $requete->execute();
-            $requete->closeCursor();
-        }
-    }*/
-
     function addNouvelle(Nouvelle $nouvelle){
         if ($this->isExistNouvelle($nouvelle->getTitre(), $nouvelle->getDescription())){
             return;
         }
         $img = $nouvelle->getImage();
-        $titre = $this->db->quote($nouvelle->getTitre());
-        $description = $this->db->quote($nouvelle->getDescription());
+        $titre = $nouvelle->getTitre();
+        $description = $nouvelle->getDescription();
         $pubDate = strftime("%Y-%m-%d %H:%M:%S", strtotime($nouvelle->getDate()));
-        $flux = $this->db->quote($nouvelle->getFlux());
+        $flux = $nouvelle->getFlux();
+        $lien = $nouvelle->getLien();
 
-        $commandeRequete = 'INSERT INTO nouvelles(date, titre, description, lien, image, flux) VALUES(\'' . $pubDate . '\', ' . $titre . ', ' . $description . ', \'' . $nouvelle->getLien() . '\', \'' . $img . '\', ' . $flux . ')';
+        $commandeRequete = 'INSERT INTO nouvelles(date, titre, description, lien, image, flux) VALUES(:pubDate, :titre, :description, :lien, :img, :flux)';
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
+            $requete->bindParam(':pubDate',$pubDate,PDO::PARAM_STR);
+            $requete->bindParam(':titre',$titre,PDO::PARAM_STR );
+            $requete->bindParam(':description',$description,PDO::PARAM_STR);
+            $requete->bindParam(':lien',$lien,PDO::PARAM_STR);
+            $requete->bindParam(':img',$img,PDO::PARAM_STR);
+            $requete->bindParam(':flux',$flux,PDO::PARAM_STR);
             $requete->execute();
             $requete->closeCursor();
         }
     }
 
     function removeNouvelle(Nouvelle $nouvelle){
-        if ($this->isExistNouvelle($nouvelle->getTitre(), $nouvelle->getDescription())){
+        if ($this->isExistNouvelle($nouvelle->getTitre(), $nouvelle->getDescription())) {
             $idAdelete= $nouvelle->getId();
             $commandeRequete="DELETE FROM flux WHERE id=$idAdelete";
             $requete= $this->db->prepare($commandeRequete);

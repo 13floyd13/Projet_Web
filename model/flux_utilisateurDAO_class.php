@@ -93,7 +93,7 @@ class Flux_utilisateurDAO
         }
         $login =$flux_utilisateur->getLogin();
         $nom = $flux_utilisateur->getNom();
-        $categorie = $this->db->quote($flux_utilisateur->getCategorie());
+        $categorie = $flux_utilisateur->getCategorie();
         $flux= $flux_utilisateur->getFlux();
         //$commandeRequete = 'INSERT INTO flux_utilisateur(flux, login, nom, categorie) VALUES(\'' . $flux_utilisateur->getFlux() . '\', ' . $login . ', ' . $nom . ', ' . $categorie . ')';
         $commandeRequete= 'INSERT INTO flux_utilisateur(flux, login, nom, categorie) VALUES( :flux , :login, :nom, :categorie)';
