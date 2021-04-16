@@ -1,3 +1,13 @@
+<?php
+  session_start();
+  require_once('../model/flux_utilisateurDAO_class.php');
+
+  $dao = new Flux_utilisateurDAO;
+
+  if ($dao->getFlux_utilisateurByLogin($_SESSION['login'])==NULL) {
+    echo '<style>#body{height: 100%;}</style>';
+  }
+?>
 <link rel="stylesheet" href="../view/design/global.css">
 <link rel="stylesheet" href="../view/design/body.css">
 <link rel="stylesheet" href="../view/design/nav.css">
