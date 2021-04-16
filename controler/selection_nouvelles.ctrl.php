@@ -36,7 +36,7 @@ if (isset($_GET['mot']) && !empty($_GET['mot'])) {
     $mot = $_GET['mot'];
     print sizeof($nouvelles);
     foreach($nouvelles as $i => $nouvelle) {
-        if (!stripos($nouvelle->getTitre(), $mot) && !stripos($nouvelle->getDescription(), $mot)) {
+        if (stripos($nouvelle->getTitre(), $mot) === false && stripos($nouvelle->getDescription(), $mot) === false) {
             unset($nouvelles[$i]);
         }
     }
