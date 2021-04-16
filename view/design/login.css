@@ -20,11 +20,33 @@ h1{
 
 table{
   width: 100%;
+  margin-bottom: 10px;
+}
+
+td{
+  text-align: center;
+  color: #EEEEEE;
 }
 
 .input{
   width: 50%;
   margin: 10px;
+  background-color: inherit;
+  color: inherit;
+  padding: 10px;
+}
+
+.bouton{
+  background-color: inherit;
+  border: none;
+  padding: 10px;
+  color: inherit;
+  border-radius: 5px;
+}
+
+.bouton:hover{
+  background-color: #1ABBFF;
+  color: #181A1B;
 }
 
 label {
@@ -34,4 +56,9 @@ label {
 .erreur {
   text-align: center;
   color: red;
+}
+
+span{
+  margin-left: 10%;
+  margin-right: 10%;
 }
