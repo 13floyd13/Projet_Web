@@ -70,6 +70,23 @@ class Flux_utilisateurDAO
         }
     }
 
+    function isNomUtilise(string $login, string $nom): bool
+    {
+        //$login = $this->db->quote($login);
+        $commandeRequete = "SELECT * FROM flux_utilisateur WHERE login= :login AND nom= :nom";
+        $requete = $this->db->prepare($commandeRequete);
+        if ($requete) {
+            $requete->bindParam(':nom',$nom,PDO::PARAM_STR );
+            $requete->bindParam(':login',$login,PDO::PARAM_STR);
+            $requete->execute();
+            $resultat = $requete->fetchAll();
+            $requete->closeCursor();
+            return count($resultat) > 0;
+        }
+        return false;
+    }
+
+
     function isExistFlux_utilisateur(string $login, string $flux): bool
     {
         //$login = $this->db->quote($login);

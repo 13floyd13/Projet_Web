@@ -12,12 +12,6 @@
     }
     if (isset($_GET['account']) && $_GET['account'] === "page") {
         require_once ("../controler/account.ctrl.php");
-    } else if (isset($erreur_nom_flux) && $erreur_nom_flux == true) {
-        include("../view/nav.view.php");
-        include("../controler/selection_nouvelles.ctrl.php");
-    } else if (isset($erreur_url_flux) && $erreur_url_flux == true) {
-        require_once("../view/nav.view.php");
-        include("../controler/selection_nouvelles.ctrl.php");
     } else if (isset($_GET['actualiser']) && $_GET['actualiser'] === "true") {
         require_once("../controler/actualisation_flux.php");
         require_once("../view/nav.view.php");

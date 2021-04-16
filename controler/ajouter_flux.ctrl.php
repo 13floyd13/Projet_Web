@@ -15,28 +15,34 @@ $i_nom_flux = $_POST['i_nom_flux'];
 $flux_db = new FluxDAO();
 $fluxUtilisateur_db = new Flux_utilisateurDAO();
 
-if (!isset($i_nom_flux) || (isset($i_nom_flux) && empty($i_nom_flux))) {
-    $i_nom_flux = (string) simplexml_load_file($i_url)->channel->title;
+$xml = simplexml_load_file($i_url);
+if ($xml == false) {
+    // message d'erreur : "Ce lien n'est pas valide"
+    $erreur_acces_url = true;
+    require_once("../controler/actus.ctrl.php");
+} else {
+    if (!isset($i_nom_flux) || empty($i_nom_flux)) {
+        $i_nom_flux = (string)simplexml_load_file($i_url)->channel->title;
+    }
+    // ce flux n'est pas dans flux_utilisateur
+    if ($fluxUtilisateur_db->isNomUtilise($i_url, $_SESSION['login'])) {
+        $erreur_nom_flux = true;
+        require_once("../controler/actus.ctrl.php");
+    } else {
+        $fluxUtilisateur = new Flux_utilisateur($i_url, $_SESSION['login'], $i_nom_flux, "");
+        if ($fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur) == false) {
+            // message d'erreur : "Ce flux est déjà dans votre liste"
+            $erreur_url_flux = true;
+            require_once("../controler/actus.ctrl.php");
+        }
+        $flux = new Flux($i_url);
+        $flux_db->addFlux($flux);
+        unset($_POST);
+        require_once("actualisation_flux.php");
+    }
 }
 
-// ce flux n'est pas dans flux_utilisateur
-if ($fluxUtilisateur_db->isExistFlux_utilisateur($_SESSION['login'], $i_nom_flux)) {
-    // message d'erreur : "Ce nom est déjà dans votre liste"
-    $erreur_nom_flux = true;
-    require_once("../controler/actus.ctrl.php");
-};
-
-$fluxUtilisateur = new Flux_utilisateur($i_url, $_SESSION['login'], $i_nom_flux, "");
-if ($fluxUtilisateur_db->addFlux_utilisateur($fluxUtilisateur) == false) {
-    // message d'erreur : "Ce flux est déjà dans votre liste"
-    $erreur_url_flux = true;
-    require_once("../controler/actus.ctrl.php");
-}
-
-$flux = new Flux($i_url);
-$flux_db->addFlux($flux);
-unset($_POST);
-require_once ("actualisation_flux.php");
-require_once("../controler/actus.ctrl.php");
+//require_once("actualisation_flux.php");
+//require_once("../controler/actus.ctrl.php");
 
 
