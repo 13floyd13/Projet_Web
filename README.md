@@ -7,7 +7,8 @@ Patrice Martin
 
 # Fonctionnalités
 - s'inscrire sur le site
-- se connecter au site
+- se connecter avec sa session au site
+- navigation loggée entre les pages tant que la session est ouverte
 - ajouter des flux rss (nom optionnel)
 - supprimer des flux rss
 - ajouter un nom personnalisé au flux au moment de l'ajout
