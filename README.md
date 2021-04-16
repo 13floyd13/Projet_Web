@@ -14,9 +14,10 @@ Patrice Martin
 - afficher les nouvelles d'un flux spécifique ou de tous les flux
 - rechercher UN mot clé à chercher parmi la liste des nouvelles affichée (tous les flux ou un flux en particulier
 - se déconnecter
-- actualiser les flux
+- actualiser les flux, enregistrement des nouvelles dans la base de donnée et stockage des images dans data/images
 - changer son mdp
 - pour le compte admin : voir la liste des utilisateurs et supprimer un utilisateur
+- mots de passes cryptés
 
 # En cours de dév
 - ajout / modification / suppression d'une catégorie
