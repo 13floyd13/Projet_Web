@@ -61,7 +61,7 @@ class Flux_utilisateurDAO
 
     function getNombreFlux_utilisateur(): int
     {
-        $commandeRequete = "SELECT COUNT(Distinct flux) FROM flux_utilisateurs";
+        $commandeRequete = "SELECT COUNT(Distinct flux) FROM flux_utilisateur";
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
