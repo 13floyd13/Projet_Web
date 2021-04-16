@@ -33,11 +33,11 @@
 
             $img = "../data/images/image";
             $img .= $nouvelles_db->getNombreNouvelles()+1;
-            if (strpos($url_image,'.jpg')||strpos($url_image,'.jpeg')||strpos($url_image,'.JPEG')||strpos($url_image,'.JPG'))
+            if (stripos($url_image,'.jpg')||stripos($url_image,'.jpeg')||stripos($url_image,'.JPEG')||stripos($url_image,'.JPG'))
                 $img .= "jpg";
-            else if (strpos($url_image,'.png')||strpos($url_image,'.PNG'))
+            else if (stripos($url_image,'.png')||stripos($url_image,'.PNG'))
                 $img .= "png";
-            else if (strpos($url_image,'.gif')||strpos($url_image,'.GIF'))
+            else if (stripos($url_image,'.gif')||stripos($url_image,'.GIF'))
                 $img .= "gif";
             else
                 $img .= "";
