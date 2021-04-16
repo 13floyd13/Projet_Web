@@ -23,7 +23,7 @@ if (isset($_POST["inscription"])){
     if ($login === "" || $mdp === "" || !($dao->isExistUtilisateur($login))) {
         require('../view/login.view.html');
     } else {
-        if (password_verify($_POST['mdp'], $mdp)) {//(strcmp($mdp, $dao->getUtilisateur($login)->getMp())==0)
+        if (password_verify($_POST['mdp'], $dao->getUtilisateur($login)->getMp())) {//(strcmp($mdp, $dao->getUtilisateur($login)->getMp())==0)
             $_SESSION['login'] = $login;
             require("../controler/actualisation_flux.php");
             require('../controler/actus.ctrl.php');
