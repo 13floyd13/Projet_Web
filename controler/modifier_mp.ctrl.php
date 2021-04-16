@@ -11,13 +11,13 @@ if (isset($_POST['old_mp'])) {
 }
 
 if (isset($_POST['new_mp'])) {
-  $new_mp = $_POST['new_mp'];
+  $new_mp = password_hash($_POST['new_mp'], PASSWORD_DEFAULT, ['cost' => 14]);
 }else{
   $new_mp = "";
 }
 
 if (isset($_POST['confirm_mp'])) {
-  $confirm_mp = $_POST['confirm_mp'];
+  $confirm_mp = password_hash($_POST['confirm_mp'], PASSWORD_DEFAULT, ['cost' => 14]);
 }else{
   $confirm_mp = "";
 }
@@ -27,7 +27,7 @@ $dao = new UtilisateurDAO;
 $login = $_SESSION['login'];
 $mdp = $dao->getUtilisateur($login)->getMp();
 
-if ($old_mp === "" || $new_mp === "" || $confirm_mp === "" || strcmp($mdp, $old_mp)!=0 || strcmp($new_mp, $confirm_mp)!=0) {
+if ($old_mp === "" || $new_mp === "" || $confirm_mp === "" || !password_verify($old_mp, $mdp) || !password_verify($_POST['new_mp'],$new_mp)) {
   require('../view/account_mp_change.view.html');
 }else{
   $utilisateur_a_update = $dao->getUtilisateur($login);

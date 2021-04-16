@@ -14,7 +14,6 @@ if (isset($_POST['mdp'])) {
 if (!ctype_alnum($login)){
     require('../view/login.view.html');
     print "login incorrect";
-    var_dump(!ctype_alnum($login));
 }
 else {
     $dao = new UtilisateurDAO;
