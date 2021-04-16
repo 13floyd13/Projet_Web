@@ -22,7 +22,12 @@ body{
 
 .supprimer{
   float: right;
-  text-decoration: none;
+  background-color: inherit;
   color: inherit;
+  border: none;
   font-size: 2em;
+}
+
+.supprimer{
+  cursor: pointer;
 }

@@ -22,7 +22,17 @@ $dao = new UtilisateurDAO;
         $utilisateurs = $dao->getUtilisateurs();
         foreach ($utilisateurs as $value) {
           $login = $value->getLogin();
-          echo '<article><a class="supprimer" href="#">&times;</a><h1>'.$login.'<h1></article><hr>';
+          if ($login!='admin') {
+            $login_utilisateur_a_supprimer = $dao->getUtilisateur($login)->getLogin();
+            echo '<form action="../controler/supprimer_utilisateur.ctrl.php" method="post">
+                    <article>
+                      <input type="hidden" id="utilisateur_a_supprimer" name="utilisateur_a_supprimer" value="'.$login_utilisateur_a_supprimer.'">
+                      <input class="supprimer" type="submit" value="&times;">
+                      <h1>'.$login.'<h1>
+                    </article>
+                  </form>
+                  <hr>';
+          }
         }
       ?>
     </div>

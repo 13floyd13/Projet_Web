@@ -1,14 +1,5 @@
 <?php
 session_start();
-require_once('../model/utilisateurDAO_class.php');
-
-$dao = new UtilisateurDAO;
-$etoile = "";
-$mdp = $dao->getUtilisateur($_SESSION['login'])->getMp();
-
-for ($i=0; $i < strlen($mdp); $i++) {
-  $etoile = $etoile.'*';
-}
 
 ?>
 
@@ -37,7 +28,7 @@ for ($i=0; $i < strlen($mdp); $i++) {
         <article>
           <input class="modif" type="submit" value="(modifier)">
           <h1>Votre mot de passe</h1>
-          <p><?= $etoile ?></p>
+          <p>**********</p>
         </article>
       </form>
       <?php

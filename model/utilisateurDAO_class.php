@@ -31,7 +31,7 @@ class UtilisateurDAO
     }
 
     function getUtilisateurs(): array {
-        $commandeRequete="SELECT * FROM utilisateurs";
+        $commandeRequete="SELECT * FROM utilisateurs ORDER BY login";
         $requete=$this->db->prepare($commandeRequete);
         if ($requete){
             $requete->execute();
@@ -84,7 +84,7 @@ class UtilisateurDAO
     function removeUtilisateur(Utilisateur $utilisateur){
         if ($this->isExistUtilisateur($utilisateur->getLogin())){
             $loginAdelete= $utilisateur->getLogin();
-            $commandeRequete1="DELETE FROM flux_utilisateurs WHERE login= :loginAdelete";
+            $commandeRequete1="DELETE FROM flux_utilisateur WHERE login= :loginAdelete";
             $requete1=$this->db->prepare($commandeRequete1);
             $requete1->bindParam(':loginAdelete',$loginAdelete,PDO::PARAM_STR);
             if($requete1){
