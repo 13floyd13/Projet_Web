@@ -27,3 +27,7 @@ Patrice Martin
 
 # Bugs connus
 - le formulaire pour ajouter un flux disparaît après avoir cliqué sur le bouton valider. Il réapparaît en cliquant sur Tous les flux par exemple
+
+# Statistiques du projet
+- 293 commits
+- 116 pull request
