@@ -21,6 +21,15 @@ session_start();
         print "<p class='erreur'>Ce flux est déjà dans votre liste</p>";
     }
     ?>
+
+    <form action="../controler/actus.ctrl.php" method="POST">
+        <fieldset>
+            <label for="Mot">Entrez un mot-clé</label><br>
+            <input type="text" id="Mot" name="Mot" placeholder="mot-clé" maxlength="255" required><br>
+            <input type="submit" value="Rechercher">
+        </fieldset>
+    </form>
+
     <hr>
   <a href="../controler/actus.ctrl.php">Tous les flux</a>
   <a href="#">Non lus</a>
