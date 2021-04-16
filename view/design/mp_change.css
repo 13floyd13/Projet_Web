@@ -31,3 +31,22 @@ td{
   text-align: left;
   padding: 15px;
 }
+
+input{
+  background-color: inherit;
+  padding: 10px;
+  color: inherit;
+}
+
+.bouton{
+  background-color: inherit;
+  border: none;
+  padding: 10px;
+  color: inherit;
+  border-radius: 5px;
+}
+
+.bouton:hover{
+  background-color: #1ABBFF;
+  color: #181A1B;
+}

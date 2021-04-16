@@ -1,7 +1,10 @@
 <?php
-require_once('../model/utilisateurDAO_class.php');
 
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+require_once('../model/utilisateurDAO_class.php');
 
 if (isset($_POST["inscription"])){
     require('../view/inscription.view.html');

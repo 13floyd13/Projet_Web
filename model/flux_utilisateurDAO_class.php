@@ -17,7 +17,7 @@ class Flux_utilisateurDAO
         }
     }
 
-    function getNomFlux_utilisateur(string $flux, string $login): Flux_utilisateur
+    function getNomFlux_utilisateur(string $flux, string $login): ?Flux_utilisateur
     {
         //$login = $this->db->quote($login);
         $commandeRequete = "SELECT nom FROM flux_utilisateur WHERE flux= :flux AND login=:login";
@@ -61,7 +61,7 @@ class Flux_utilisateurDAO
 
     function getNombreFlux_utilisateur(): int
     {
-        $commandeRequete = "SELECT COUNT(Distinct flux) FROM flux_utilisateurs";
+        $commandeRequete = "SELECT COUNT(Distinct flux) FROM flux_utilisateur";
         $requete = $this->db->prepare($commandeRequete);
         if ($requete) {
             $requete->execute();
